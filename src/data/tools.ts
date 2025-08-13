@@ -4,7 +4,8 @@ import {
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
   Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
-  Columns, Key, Highlighter, Scale, Eraser, Stamp, ShieldOff
+  Columns, Key, Highlighter, Scale, Eraser, Stamp, ShieldOff, ArrowLeftRight, Calculator,
+  Regex, Table, Landmark, Banknote, FileX2
 } from 'lucide-react';
 
 export interface Tool {
@@ -63,6 +64,13 @@ const BmiCalculatorPage = React.lazy(() => import('@/pages/tools/BmiCalculatorPa
 const TextRedactorPage = React.lazy(() => import('@/pages/tools/TextRedactorPage'));
 const PdfWatermarkAdderPage = React.lazy(() => import('@/pages/tools/PdfWatermarkAdderPage'));
 const FileShredderPage = React.lazy(() => import('@/pages/tools/FileShredderPage'));
+const PalindromeCheckerPage = React.lazy(() => import('@/pages/tools/PalindromeCheckerPage'));
+const AdvancedWordCounterPage = React.lazy(() => import('@/pages/tools/AdvancedWordCounterPage'));
+const RegexTesterPage = React.lazy(() => import('@/pages/tools/RegexTesterPage'));
+const HtmlTableGeneratorPage = React.lazy(() => import('@/pages/tools/HtmlTableGeneratorPage'));
+const CurrencyConverterPage = React.lazy(() => import('@/pages/tools/CurrencyConverterPage'));
+const LoanCalculatorPage = React.lazy(() => import('@/pages/tools/LoanCalculatorPage'));
+const ExifRemoverPage = React.lazy(() => import('@/pages/tools/ExifRemoverPage'));
 
 
 export const tools: Tool[] = [
@@ -75,7 +83,7 @@ export const tools: Tool[] = [
   { name: 'HTML Minifier', description: 'Minify HTML code to reduce its size.', category: 'Coding', tags: ['html', 'coding', 'optimization'], icon: Code, path: '/tools/html-minifier', component: HtmlMinifierPage },
   { name: 'QR Code Generator', description: 'Generate a QR code from text or a URL.', category: 'Everyday', tags: ['qr', 'sharing', 'generation'], icon: QrCode, path: '/tools/qr-code-generator', component: QrCodeGeneratorPage },
   { name: 'Unit Converter', description: 'Convert between various units of measurement.', category: 'Everyday', tags: ['measurement', 'conversion', 'utility'], icon: Ruler, path: '/tools/unit-converter', component: UnitConverterPage },
-  { name: 'Password Generator', description: 'Generate secure passwords with customizable rules.', category: 'Security', tags: ['password', 'security', 'privacy'], icon: Lock, path: '/tools/password-generator', component: PasswordGeneratorPage },
+  { name: 'Secure Password Generator', description: 'Generate strong, secure passwords with customizable rules.', category: 'Security', tags: ['password', 'security', 'privacy'], icon: Lock, path: '/tools/password-generator', component: PasswordGeneratorPage },
   { name: 'Base64 Encoder/Decoder', description: 'Encode and decode Base64 strings instantly.', category: 'Security', tags: ['encoding', 'decoding', 'data'], icon: Fingerprint, path: '/tools/base64-encoder-decoder', component: Base64EncoderPage },
   
   // Batch 2
@@ -110,4 +118,13 @@ export const tools: Tool[] = [
   { name: 'Text Redactor', description: 'Black out or blur sensitive words and phrases in text.', category: 'Security', tags: ['privacy', 'text', 'editing', 'redact'], icon: Eraser, path: '/tools/text-redactor', component: TextRedactorPage },
   { name: 'PDF Watermark Adder', description: 'Add a text or image watermark to your PDF files.', category: 'File', tags: ['pdf', 'document', 'branding', 'watermark'], icon: Stamp, path: '/tools/pdf-watermark-adder', component: PdfWatermarkAdderPage },
   { name: 'File Shredder (Simulation)', description: 'Securely overwrite a file\'s data in-memory before discarding.', category: 'Security', tags: ['file', 'security', 'privacy', 'delete'], icon: ShieldOff, path: '/tools/file-shredder', component: FileShredderPage },
+
+  // Batch 5
+  { name: 'Palindrome Checker', description: 'Check if a word or sentence is a palindrome.', category: 'Text', tags: ['text', 'fun', 'utility', 'palindrome'], icon: ArrowLeftRight, path: '/tools/palindrome-checker', component: PalindromeCheckerPage },
+  { name: 'Advanced Word Counter', description: 'Get detailed statistics about your text, live.', category: 'Text', tags: ['text', 'writing', 'stats', 'counter'], icon: Calculator, path: '/tools/advanced-word-counter', component: AdvancedWordCounterPage },
+  { name: 'Regex Tester', description: 'Build and test Regular Expressions in real-time.', category: 'Coding', tags: ['regex', 'coding', 'search', 'dev'], icon: Regex, path: '/tools/regex-tester', component: RegexTesterPage },
+  { name: 'HTML Table Generator', description: 'Generate HTML tables from structured data or settings.', category: 'Coding', tags: ['html', 'table', 'web', 'generator'], icon: Table, path: '/tools/html-table-generator', component: HtmlTableGeneratorPage },
+  { name: 'Currency Converter', description: 'Convert between currencies using static rates.', category: 'Everyday', tags: ['finance', 'currency', 'calculator', 'money'], icon: Landmark, path: '/tools/currency-converter', component: CurrencyConverterPage },
+  { name: 'Loan Calculator', description: 'Calculate loan payments and total interest.', category: 'Everyday', tags: ['finance', 'loan', 'calculator', 'interest'], icon: Banknote, path: '/tools/loan-calculator', component: LoanCalculatorPage },
+  { name: 'EXIF Metadata Remover', description: 'Remove EXIF metadata from images to protect your privacy.', category: 'Security', tags: ['image', 'privacy', 'security', 'exif'], icon: FileX2, path: '/tools/exif-remover', component: ExifRemoverPage },
 ];

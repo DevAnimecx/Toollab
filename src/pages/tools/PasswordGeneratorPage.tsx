@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Input } from '@/components/ui/input';
@@ -17,9 +17,10 @@ const PasswordGeneratorPage = () => {
     lowercase: true,
     numbers: true,
     symbols: true,
+    excludeSimilar: true,
   });
 
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     const chars = {
       uppercase: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
       lowercase: 'abcdefghijklmnopqrstuvwxyz',
@@ -27,11 +28,17 @@ const PasswordGeneratorPage = () => {
       symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?',
     };
     
+    const similarChars = /[ilI1|oO0]/g;
+
     let charset = '';
     if (options.uppercase) charset += chars.uppercase;
     if (options.lowercase) charset += chars.lowercase;
     if (options.numbers) charset += chars.numbers;
     if (options.symbols) charset += chars.symbols;
+
+    if (options.excludeSimilar) {
+      charset = charset.replace(similarChars, '');
+    }
 
     if (!charset) {
       setPassword('');
@@ -43,11 +50,11 @@ const PasswordGeneratorPage = () => {
       newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
     }
     setPassword(newPassword);
-  };
+  }, [length, options]);
 
   useEffect(() => {
     generatePassword();
-  }, [length, options]);
+  }, [length, options, generatePassword]);
 
   return (
     <ToolPageLayout tool={tool}>
@@ -72,10 +79,10 @@ const PasswordGeneratorPage = () => {
               <Checkbox
                 id={key}
                 checked={options[key as keyof typeof options]}
-                onCheckedChange={(checked) => setOptions(prev => ({ ...prev, [key]: checked }))}
+                onCheckedChange={(checked) => setOptions(prev => ({ ...prev, [key]: !!checked }))}
               />
               <label htmlFor={key} className="capitalize text-sm font-medium leading-none">
-                Include {key}
+                {key === 'excludeSimilar' ? 'Exclude Similar' : `Include ${key}`}
               </label>
             </div>
           ))}
