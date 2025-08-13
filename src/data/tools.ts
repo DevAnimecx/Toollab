@@ -4,7 +4,7 @@ import {
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
   Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
-  Columns, Key, Highlighter, Scale, Eraser
+  Columns, Key, Highlighter, Scale, Eraser, Stamp
 } from 'lucide-react';
 
 export interface Tool {
@@ -61,6 +61,7 @@ const CodeSyntaxHighlighterPage = React.lazy(() => import('@/pages/tools/CodeSyn
 const RandomNumberGeneratorPage = React.lazy(() => import('@/pages/tools/RandomNumberGeneratorPage'));
 const BmiCalculatorPage = React.lazy(() => import('@/pages/tools/BmiCalculatorPage'));
 const TextRedactorPage = React.lazy(() => import('@/pages/tools/TextRedactorPage'));
+const PdfWatermarkAdderPage = React.lazy(() => import('@/pages/tools/PdfWatermarkAdderPage'));
 
 
 export const tools: Tool[] = [
@@ -106,4 +107,5 @@ export const tools: Tool[] = [
   { name: 'Random Number Generator', description: 'Generate random numbers within a specified range.', category: 'Everyday', tags: ['random', 'utility', 'math', 'number'], icon: Hash, path: '/tools/random-number-generator', component: RandomNumberGeneratorPage },
   { name: 'BMI Calculator', description: 'Calculate Body Mass Index (BMI) using metric or imperial units.', category: 'Everyday', tags: ['health', 'fitness', 'calculation', 'bmi'], icon: Scale, path: '/tools/bmi-calculator', component: BmiCalculatorPage },
   { name: 'Text Redactor', description: 'Black out or blur sensitive words and phrases in text.', category: 'Security', tags: ['privacy', 'text', 'editing', 'redact'], icon: Eraser, path: '/tools/text-redactor', component: TextRedactorPage },
+  { name: 'PDF Watermark Adder', description: 'Add a text or image watermark to your PDF files.', category: 'File', tags: ['pdf', 'document', 'branding', 'watermark'], icon: Stamp, path: '/tools/pdf-watermark-adder', component: PdfWatermarkAdderPage },
 ];
