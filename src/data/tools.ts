@@ -4,7 +4,7 @@ import {
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
   Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
-  Columns, Key, Highlighter, Scale, Eraser, Stamp
+  Columns, Key, Highlighter, Scale, Eraser, Stamp, ShieldOff
 } from 'lucide-react';
 
 export interface Tool {
@@ -62,6 +62,7 @@ const RandomNumberGeneratorPage = React.lazy(() => import('@/pages/tools/RandomN
 const BmiCalculatorPage = React.lazy(() => import('@/pages/tools/BmiCalculatorPage'));
 const TextRedactorPage = React.lazy(() => import('@/pages/tools/TextRedactorPage'));
 const PdfWatermarkAdderPage = React.lazy(() => import('@/pages/tools/PdfWatermarkAdderPage'));
+const FileShredderPage = React.lazy(() => import('@/pages/tools/FileShredderPage'));
 
 
 export const tools: Tool[] = [
@@ -108,4 +109,5 @@ export const tools: Tool[] = [
   { name: 'BMI Calculator', description: 'Calculate Body Mass Index (BMI) using metric or imperial units.', category: 'Everyday', tags: ['health', 'fitness', 'calculation', 'bmi'], icon: Scale, path: '/tools/bmi-calculator', component: BmiCalculatorPage },
   { name: 'Text Redactor', description: 'Black out or blur sensitive words and phrases in text.', category: 'Security', tags: ['privacy', 'text', 'editing', 'redact'], icon: Eraser, path: '/tools/text-redactor', component: TextRedactorPage },
   { name: 'PDF Watermark Adder', description: 'Add a text or image watermark to your PDF files.', category: 'File', tags: ['pdf', 'document', 'branding', 'watermark'], icon: Stamp, path: '/tools/pdf-watermark-adder', component: PdfWatermarkAdderPage },
+  { name: 'File Shredder (Simulation)', description: 'Securely overwrite a file\'s data in-memory before discarding.', category: 'Security', tags: ['file', 'security', 'privacy', 'delete'], icon: ShieldOff, path: '/tools/file-shredder', component: FileShredderPage },
 ];
