@@ -40,10 +40,21 @@ const HomePage = () => {
         <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Toollab offers 70+ fast, secure, and free tools that work entirely in your browser. No uploads, no waiting. Just instant results.
         </p>
-        <div className="mt-8 flex justify-center gap-4">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4">
           <Button asChild size="lg">
             <Link to="/tools">Browse All Tools</Link>
           </Button>
+          <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
+            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
+              <Link to="/tools/json-formatter">JSON Formatter</Link>
+            </Button>
+            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
+              <Link to="/tools/image-converter">Image Converter</Link>
+            </Button>
+            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
+              <Link to="/tools/hash-generator">Hash Generator</Link>
+            </Button>
+          </div>
         </div>
       </section>
 

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --font-sans: "Inter", sans-serif;
+  :root, .font-default {
+    --font-sans: "Nunito Sans", sans-serif;
     --font-serif: "Playfair Display", serif;
     --font-heading: "Space Grotesk", sans-serif;
 
@@ -37,7 +37,12 @@
     --input: 215 28% 17%;
     --ring: 217 91% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+  }
+
+  .font-elegant {
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Playfair Display", serif;
   }
 
   .light {

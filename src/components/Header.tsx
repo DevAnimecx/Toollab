@@ -3,6 +3,7 @@ import { Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { FontToggle } from "@/components/FontToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 const Header = () => {
@@ -30,13 +31,14 @@ const Header = () => {
             </Link>
           ))}
         </nav>
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-2">
           <div className="hidden md:flex flex-1 max-w-xs items-center space-x-2">
             <Input type="search" placeholder="Search for a tool..." className="h-9" />
             <Button type="submit" size="icon" variant="secondary">
               <Search className="h-4 w-4" />
             </Button>
           </div>
+          <FontToggle />
           <ThemeToggle />
           <Button className="hidden md:inline-flex" variant="default">Login / Sign Up</Button>
           
