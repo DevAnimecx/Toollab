@@ -17,7 +17,7 @@ import TermsOfServicePage from "./pages/TermsOfServicePage";
 import DisclaimerPage from "./pages/DisclaimerPage";
 import NotFound from "./pages/NotFound";
 import { tools } from "./data/tools";
-import { Skeleton } from "./components/ui/skeleton";
+import CinematicLoader from "./components/CinematicLoader";
 
 const queryClient = new QueryClient();
 
@@ -31,18 +31,6 @@ const AppLayout = () => (
   </div>
 );
 
-const PageLoader = () => (
-  <div className="container mx-auto px-4 py-12">
-    <div className="text-center mb-12">
-      <Skeleton className="h-10 w-1/2 mx-auto mb-4" />
-      <Skeleton className="h-6 w-1/4 mx-auto" />
-    </div>
-    <div className="max-w-4xl mx-auto">
-      <Skeleton className="h-64 w-full" />
-    </div>
-  </div>
-);
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
@@ -51,7 +39,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Suspense fallback={<PageLoader />}>
+            <Suspense fallback={<CinematicLoader />}>
               <Routes>
                 <Route element={<AppLayout />}>
                   <Route path="/" element={<HomePage />} />

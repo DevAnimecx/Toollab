@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FontToggle } from "@/components/FontToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import ToollabLogo from "./ui/ToollabLogo";
 
 const Header = () => {
   const navLinks = [
@@ -18,14 +19,15 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <Link to="/" className="mr-6 flex items-center space-x-2">
-          <span className="font-bold text-xl font-heading text-primary">Toollab</span>
+          <ToollabLogo className="h-10 w-auto" />
         </Link>
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               to={link.href}
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
+              className="transition-colors hover:text-foreground/80 text-foreground/60 nav-link-glow"
+              style={{ '--accent-color': '#4DA8DA' } as React.CSSProperties}
             >
               {link.name}
             </Link>
