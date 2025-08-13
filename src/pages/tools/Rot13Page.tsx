@@ -22,7 +22,7 @@ const Rot13Page = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Input text"
-          className="min-h-[250px]"
+          className="min-h-[250px] bg-secondary/40 border-white/10"
         />
         <Textarea
           value={rot13Text}

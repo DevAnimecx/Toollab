@@ -27,7 +27,7 @@ const RandomNumberGeneratorPage = () => {
         <div className="lg:col-span-2 space-y-4">
           <Button onClick={generateNumbers}>Generate Numbers</Button>
           <div className="relative">
-            <ScrollArea className="h-72 w-full rounded-md border p-4">
+            <ScrollArea className="h-72 w-full rounded-md border p-4 bg-secondary/40 border-white/10">
               <div className="grid grid-cols-5 gap-4">
                 {numbers.map((num, i) => <div key={i} className="p-2 text-center">{num}</div>)}
               </div>
@@ -38,13 +38,13 @@ const RandomNumberGeneratorPage = () => {
         <div className="lg:col-span-1">
           <ToolSettings>
             <SettingsRow label="Min Value">
-              <Input type="number" value={min} onChange={(e) => setMin(Number(e.target.value))} className="w-24" />
+              <Input type="number" value={min} onChange={(e) => setMin(Number(e.target.value))} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
             <SettingsRow label="Max Value">
-              <Input type="number" value={max} onChange={(e) => setMax(Number(e.target.value))} className="w-24" />
+              <Input type="number" value={max} onChange={(e) => setMax(Number(e.target.value))} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
             <SettingsRow label="Quantity">
-              <Input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} className="w-24" />
+              <Input type="number" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
           </ToolSettings>
         </div>

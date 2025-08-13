@@ -39,7 +39,7 @@ const ImageMetadataViewerPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
+        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
           <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
           <h3 className="mt-4 text-lg font-medium text-foreground">Upload an Image</h3>
           <input type="file" accept="image/jpeg" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />

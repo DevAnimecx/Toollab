@@ -41,7 +41,7 @@ const KeywordExtractorPage = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste your text here..."
-            className="min-h-[300px]"
+            className="min-h-[300px] bg-secondary/40 border-white/10"
           />
           <Button onClick={handleExtract} disabled={!text}>Extract Keywords</Button>
           <Table>
@@ -64,7 +64,7 @@ const KeywordExtractorPage = () => {
         <div className="lg:col-span-1">
           <ToolSettings>
             <SettingsRow label="Number of Keywords">
-              <Input type="number" value={numKeywords} onChange={(e) => setNumKeywords(Number(e.target.value))} className="w-24" />
+              <Input type="number" value={numKeywords} onChange={(e) => setNumKeywords(Number(e.target.value))} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
             <SettingsRow label="Ignore Common Stopwords">
               <Switch checked={ignoreStopwords} onCheckedChange={setIgnoreStopwords} />

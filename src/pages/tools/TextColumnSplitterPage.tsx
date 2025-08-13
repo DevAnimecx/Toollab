@@ -30,10 +30,10 @@ const TextColumnSplitterPage = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste text here. Each line is a row."
-            className="min-h-[200px]"
+            className="min-h-[200px] bg-secondary/40 border-white/10"
           />
           <Button onClick={handleSplit} disabled={!input}>Split Text</Button>
-          <ScrollArea className="h-72 w-full rounded-md border">
+          <ScrollArea className="h-72 w-full rounded-md border bg-secondary/40 border-white/10">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -57,7 +57,7 @@ const TextColumnSplitterPage = () => {
         <div className="lg:col-span-1">
           <ToolSettings>
             <SettingsRow label="Delimiter">
-              <Input value={delimiter} onChange={(e) => setDelimiter(e.target.value)} className="w-24" />
+              <Input value={delimiter} onChange={(e) => setDelimiter(e.target.value)} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
           </ToolSettings>
         </div>
