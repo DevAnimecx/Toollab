@@ -4,7 +4,7 @@ import { tools } from '@/data/tools';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent } from '@/components/ui/card';
-import { formatInTimeZone, zonedTimeToUtc } from 'date-fns-tz';
+import { formatInTimeZone, fromZonedTime } from 'date-fns-tz';
 
 const timeZones = [
   'UTC',
@@ -26,11 +26,11 @@ const TimeZoneConverterPage = () => {
 
   const convertedTime = useMemo(() => {
     try {
-      // Parse the input date-time string, treating it as a date in the 'fromTz' timezone.
-      // This gives us the equivalent date in UTC.
-      const utcDate = zonedTimeToUtc(dateTime, fromTz);
+      // The input dateTime string is treated as being in the `fromTz` timezone.
+      // `fromZonedTime` converts this to a standard JavaScript Date object (which is internally UTC).
+      const utcDate = fromZonedTime(dateTime, fromTz);
       
-      // Format this UTC date into the 'toTz' timezone.
+      // `formatInTimeZone` then takes this UTC date and formats it as a string for the `toTz` timezone.
       return formatInTimeZone(utcDate, toTz, "yyyy-MM-dd HH:mm:ss zzz");
     } catch (e) {
       console.error("Error converting time:", e);
