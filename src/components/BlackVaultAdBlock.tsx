@@ -26,7 +26,7 @@ const BlackVaultAdBlock = () => {
 
   return (
     <section className="py-16">
-      <div className="relative w-full h-[300px] md:h-[350px] overflow-hidden">
+      <div className="relative w-full h-[180px] md:h-[210px] overflow-hidden">
         <AnimatePresence>
           <motion.a
             key={currentAd.id}
