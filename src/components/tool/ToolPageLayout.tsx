@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tool, categories } from '@/data/tools';
+import { Tool, tools, categories } from '@/data/tools';
 import ToolCard from '@/components/ToolCard';
 import { Link } from 'react-router-dom';
 import { GlassBadge } from '../ui/GlassBadge';
