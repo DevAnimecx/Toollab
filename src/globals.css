@@ -4,38 +4,39 @@
 
 @layer base {
   :root {
-    --background: 211 70% 13%; /* #0B1E35 */
-    --foreground: 0 0% 100%;
+    --background: 224 71% 4%; /* #010818 */
+    --foreground: 210 40% 98%;
 
-    --card: 211 58% 16%;
-    --card-foreground: 0 0% 100%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 211 58% 16%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 206 79% 60%; /* Default to Text accent */
-    --primary-foreground: 0 0% 100%;
+    --primary: 206 100% 50%; /* A brighter blue */
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 211 43% 24%; /* rgba(19, 43, 71, 0.65) */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 211 43% 24%;
-    --muted-foreground: 215 16% 70%; /* #A9B7C9 */
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 211 43% 24%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 210 40% 98% / 0.15; /* white with 15% opacity */
-    --input: 210 40% 98% / 0.1;
-    --ring: 206 79% 60%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 213 94% 68%;
 
     --radius: 0.75rem;
 
     --font-sans: "Inter", sans-serif;
-    --font-heading: "Poppins", sans-serif;
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "Manrope", sans-serif;
   }
 
   .light {
@@ -67,7 +68,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-body;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold;
@@ -80,11 +81,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(169, 183, 201, 0.2);
+    background: hsl(var(--secondary));
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(169, 183, 201, 0.4);
+    background: hsl(var(--muted-foreground));
   }
 }
 

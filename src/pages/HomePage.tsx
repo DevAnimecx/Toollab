@@ -5,13 +5,14 @@ import { SearchBar } from "@/components/SearchBar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
+import { useFavorites } from "@/context/FavoritesContext";
 
 const Hero = () => (
   <section className="text-center py-20 md:py-32">
     <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-white to-muted-foreground/80">
       All Your Tools. One Elegant Hub.
     </h1>
-    <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+    <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
       Toollab offers fast, secure, and free client-side tools. No uploads, no waiting. Just instant results.
     </p>
     <div className="mt-8 flex justify-center">
@@ -42,39 +43,42 @@ const CategoryCarousel = () => (
 );
 
 const DynamicToolShowcase = () => {
+  const { favorites } = useFavorites();
   const popularTools = tools.filter(t => t.popularity === 'popular').slice(0, 8);
   const hotTools = tools.filter(t => t.popularity === 'hot').slice(0, 8);
   const newTools = tools.filter(t => t.popularity === 'new').slice(0, 8);
+  const favoriteTools = tools.filter(t => favorites.includes(t.path));
 
-  const renderTools = (toolList: typeof tools) => (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
-      {toolList.map((tool, index) => (
-        <ToolCard 
-          key={tool.name} 
-          name={tool.name}
-          description={tool.description}
-          href={tool.path}
-          icon={<tool.icon className="h-8 w-8" />}
-          accentColor={tool.accentColor}
-          category={tool.category}
-          popularity={tool.popularity}
-          animationDelay={`${index * 100}ms`}
-        />
-      ))}
-    </div>
-  );
+  const renderTools = (toolList: typeof tools) => {
+    if (toolList.length === 0) {
+      return <p className="text-center text-muted-foreground mt-8">No tools in this category yet. Mark some as favorites!</p>
+    }
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+        {toolList.map((tool, index) => (
+          <ToolCard 
+            key={tool.path} 
+            tool={tool}
+            animationDelay={`${index * 100}ms`}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return (
     <section id="tool-showcase" className="py-16">
       <h2 className="text-4xl font-bold text-center mb-12">Discover Our Tools</h2>
       <Tabs defaultValue="all" className="w-full">
-        <TabsList className="grid w-full max-w-md mx-auto grid-cols-4">
+        <TabsList className="grid w-full max-w-lg mx-auto grid-cols-5">
           <TabsTrigger value="all">All</TabsTrigger>
+          <TabsTrigger value="favorites">Favorites</TabsTrigger>
           <TabsTrigger value="popular">Popular</TabsTrigger>
           <TabsTrigger value="hot">Hot</TabsTrigger>
           <TabsTrigger value="new">New</TabsTrigger>
         </TabsList>
         <TabsContent value="all">{renderTools(tools.slice(0, 8))}</TabsContent>
+        <TabsContent value="favorites">{renderTools(favoriteTools)}</TabsContent>
         <TabsContent value="popular">{renderTools(popularTools)}</TabsContent>
         <TabsContent value="hot">{renderTools(hotTools)}</TabsContent>
         <TabsContent value="new">{renderTools(newTools)}</TabsContent>

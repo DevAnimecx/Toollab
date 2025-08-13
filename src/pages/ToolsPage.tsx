@@ -53,11 +53,8 @@ const ToolsPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {filteredTools.map((tool) => (
               <ToolCard 
-                key={tool.name} 
-                name={tool.name}
-                description={tool.description}
-                href={tool.path}
-                icon={<tool.icon className="h-8 w-8" />}
+                key={tool.path} 
+                tool={tool}
               />
             ))}
           </div>

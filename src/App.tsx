@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { FontProvider } from "@/components/FontProvider";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HomePage from "./pages/HomePage";
@@ -57,32 +58,34 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
         <FontProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <GlassBackground />
-            {isLoading && <Loader />}
-            <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-              <BrowserRouter>
-                <Routes>
-                  <Route element={<AppLayout />}>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/tools" element={<ToolsPage />} />
-                    <Route path="/about" element={<AboutPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
-                    <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                    <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-                    <Route path="/disclaimer" element={<DisclaimerPage />} />
-                    
-                    {tools.map(tool => (
-                      <Route key={tool.path} path={tool.path} element={<tool.component />} />
-                    ))}
-                  </Route>
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </BrowserRouter>
-            </div>
-          </TooltipProvider>
+          <FavoritesProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <GlassBackground />
+              {isLoading && <Loader />}
+              <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+                <BrowserRouter>
+                  <Routes>
+                    <Route element={<AppLayout />}>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/tools" element={<ToolsPage />} />
+                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/contact" element={<ContactPage />} />
+                      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                      <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                      <Route path="/disclaimer" element={<DisclaimerPage />} />
+                      
+                      {tools.map(tool => (
+                        <Route key={tool.path} path={tool.path} element={<tool.component />} />
+                      ))}
+                    </Route>
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </BrowserRouter>
+              </div>
+            </TooltipProvider>
+          </FavoritesProvider>
         </FontProvider>
       </ThemeProvider>
     </QueryClientProvider>

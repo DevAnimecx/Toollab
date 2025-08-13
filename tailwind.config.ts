@@ -19,8 +19,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-sans)", "sans-serif"],
-        heading: ["var(--font-heading)", "sans-serif"],
+        sans: ["'Inter'", "sans-serif"],
+        heading: ["'Space Grotesk'", "sans-serif"],
+        body: ["'Manrope'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -102,6 +103,18 @@ export default {
           "0%": { opacity: "0", transform: "translateY(-100%)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        "gold-shine": {
+          "0%, 100%": { "text-shadow": "0 0 4px #fde047, 0 0 10px #fde047, 0 0 20px #facc15" },
+          "50%": { "text-shadow": "0 0 8px #fde047, 0 0 15px #fde047, 0 0 30px #facc15" },
+        },
+        "hot-flame": {
+          "0%, 100%": { transform: "scale(1) rotate(-2deg)", color: "hsl(16 100% 50%)" },
+          "50%": { transform: "scale(1.1) rotate(2deg)", color: "hsl(35 100% 55%)" },
+        },
+        "new-glow": {
+          "0%, 100%": { "box-shadow": "0 0 5px 1px hsl(var(--primary) / 0.7)" },
+          "50%": { "box-shadow": "0 0 10px 2px hsl(var(--primary) / 0.9)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -113,6 +126,9 @@ export default {
         "subtle-pulse": "subtle-pulse 10s infinite ease-in-out",
         "staggered-fade-slide-up": "staggered-fade-slide-up 0.5s ease-out forwards",
         "slide-down": "slide-down 0.5s 1.5s ease-out forwards",
+        "gold-shine": "gold-shine 2s infinite ease-in-out",
+        "hot-flame": "hot-flame 1.5s infinite ease-in-out",
+        "new-glow": "new-glow 2s infinite ease-in-out",
       },
     },
   },
