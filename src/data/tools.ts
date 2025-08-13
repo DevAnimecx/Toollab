@@ -5,7 +5,7 @@ import {
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
   Combine, BarChart, Scissors, Table2, Users, Globe, RotateCcw, FileSearch2,
   Columns, Key, Highlighter, Scale, Eraser, Stamp, ShieldOff, ArrowLeftRight, Calculator,
-  Regex, Table, Landmark, Banknote, FileX2
+  Regex, Table, Landmark, Banknote, FileX2, Hash
 } from 'lucide-react';
 
 export interface Tool {
