@@ -1,8 +1,8 @@
 import React from 'react';
-import { Tool, tools, categories } from '@/data/tools';
+import { Tool, tools } from '@/data/tools';
 import ToolCard from '@/components/ToolCard';
 import { Link } from 'react-router-dom';
-import { GlassBadge } from '../ui/GlassBadge';
+import { Badge } from '@/components/ui/badge';
 
 interface ToolPageLayoutProps {
   tool: Tool;
@@ -20,16 +20,14 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
 
   return (
     <div className="container mx-auto px-4 py-12" style={style}>
-      <header className="relative text-center mb-12 p-8 rounded-xl overflow-hidden border border-white/10 bg-secondary/40 backdrop-blur-lg">
+      <header className="relative text-center mb-12 p-8 rounded-2xl overflow-hidden border border-white/10 bg-secondary/40">
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)] to-transparent opacity-10"></div>
+        <tool.icon className="absolute -top-4 -right-4 h-32 w-32 text-[var(--accent-color)] opacity-5" />
         <div className="relative z-10">
-          <div className="flex justify-center items-center gap-4 mb-4">
-            <div className="p-3 rounded-lg bg-black/20 text-[var(--accent-color)]">
-              <tool.icon className="h-8 w-8" />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-heading text-glow">{tool.name}</h1>
-          </div>
-          <GlassBadge accentColor={tool.accentColor}>{tool.category}</GlassBadge>
+          <Badge variant="secondary" style={{ color: tool.accentColor, borderColor: `${tool.accentColor}40`, background: `${tool.accentColor}15` }}>
+            {tool.category}
+          </Badge>
+          <h1 className="mt-4 text-4xl md:text-5xl font-extrabold font-heading text-glow">{tool.name}</h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             {tool.description}
           </p>

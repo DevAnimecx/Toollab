@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { GlassTextarea } from '@/components/ui/GlassInput';
-import { GlassButton } from '@/components/ui/GlassButton';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -38,12 +38,11 @@ const JsonFormatterPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <h3 className="font-semibold mb-2">Input JSON</h3>
-          <GlassTextarea
+          <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your JSON here"
-            className="min-h-[300px] font-mono text-sm"
-            accentColor={tool.accentColor}
+            className="min-h-[300px] font-mono text-sm bg-secondary/40 border-white/10"
           />
         </div>
         <div className="space-y-2">
@@ -74,7 +73,7 @@ const JsonFormatterPage = () => {
         </div>
       </div>
       <div className="mt-6 text-center">
-        <GlassButton onClick={handleFormat} size="lg" accentColor={tool.accentColor}>Format JSON</GlassButton>
+        <Button onClick={handleFormat} size="lg">Format JSON</Button>
       </div>
     </ToolPageLayout>
   );

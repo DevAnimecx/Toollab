@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { GlassTextarea } from '@/components/ui/GlassInput';
-import { GlassButton } from '@/components/ui/GlassButton';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
 import { Trash2 } from 'lucide-react';
@@ -23,12 +22,11 @@ const DuplicateLineRemoverPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="space-y-4">
         <div className="relative">
-          <GlassTextarea
+          <Textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste your text with duplicate lines here..."
-            className="min-h-[250px] text-base p-4 pr-24"
-            accentColor={tool.accentColor}
+            className="min-h-[250px] text-base p-4 pr-24 bg-secondary/40 border-white/10"
           />
           <div className="absolute top-3 right-3 flex flex-col gap-2">
             <CopyButton textToCopy={text} />
@@ -38,7 +36,7 @@ const DuplicateLineRemoverPage = () => {
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <GlassButton onClick={handleRemoveDuplicates} disabled={!text} size="lg" accentColor={tool.accentColor}>Remove Duplicates</GlassButton>
+          <Button onClick={handleRemoveDuplicates} disabled={!text} size="lg">Remove Duplicates</Button>
           {linesRemoved > 0 && (
             <p className="text-sm text-green-500">{linesRemoved} duplicate line(s) removed.</p>
           )}

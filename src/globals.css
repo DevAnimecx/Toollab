@@ -34,8 +34,8 @@
 
     --radius: 0.75rem;
 
-    --font-sans: "Space Grotesk", sans-serif;
-    --font-heading: "Playfair Display", serif;
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Poppins", sans-serif;
   }
 
   .light {
@@ -67,7 +67,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold;
@@ -91,5 +91,8 @@
 @layer utilities {
   .animation-delay-2000 {
     animation-delay: 2s;
+  }
+  .text-glow {
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.2);
   }
 }

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { GlassTextarea } from '@/components/ui/GlassInput';
-import { GlassButton } from '@/components/ui/GlassButton';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
 import { minify } from 'html-minifier-terser';
 import { showSuccess } from '@/utils/toast';
@@ -35,12 +35,11 @@ const HtmlMinifierPage = () => {
             <h3 className="font-semibold">Input HTML</h3>
             <CopyButton textToCopy={input} />
           </div>
-          <GlassTextarea
+          <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your HTML code here"
-            className="min-h-[300px] font-mono text-sm"
-            accentColor={tool.accentColor}
+            className="min-h-[300px] font-mono text-sm bg-secondary/40 border-white/10"
           />
         </div>
         <div className="space-y-2">
@@ -48,17 +47,16 @@ const HtmlMinifierPage = () => {
             <h3 className="font-semibold">Minified Output</h3>
             <CopyButton textToCopy={output} />
           </div>
-          <GlassTextarea
+          <Textarea
             value={output}
             readOnly
             placeholder="Minified HTML will appear here"
             className="min-h-[300px] font-mono text-sm bg-muted/50"
-            accentColor={tool.accentColor}
           />
         </div>
       </div>
       <div className="mt-6 flex items-center justify-center gap-6">
-        <GlassButton onClick={handleMinify} size="lg" disabled={!input} accentColor={tool.accentColor}>Minify HTML</GlassButton>
+        <Button onClick={handleMinify} size="lg" disabled={!input}>Minify HTML</Button>
         {savings > 0 && (
           <p className="text-green-500 font-semibold">
             Saved {savings.toFixed(2)}%

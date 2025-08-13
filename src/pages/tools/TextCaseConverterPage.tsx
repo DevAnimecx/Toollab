@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { GlassTextarea } from '@/components/ui/GlassInput';
-import { GlassButton } from '@/components/ui/GlassButton';
+import { Textarea } from '@/components/ui/textarea';
+import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
 import { Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const TextCaseConverterPage = () => {
   const tool = tools.find((t) => t.path === '/tools/text-case-converter')!;
@@ -23,12 +22,11 @@ const TextCaseConverterPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="space-y-4">
         <div className="relative">
-          <GlassTextarea
+          <Textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Paste or type your text here..."
-            className="min-h-[250px] text-base p-4 pr-24"
-            accentColor={tool.accentColor}
+            className="min-h-[250px] text-base p-4 pr-24 bg-secondary/40 border-white/10"
           />
           <div className="absolute top-3 right-3 flex flex-col gap-2">
             <CopyButton textToCopy={text} />
@@ -38,10 +36,10 @@ const TextCaseConverterPage = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <GlassButton onClick={() => setText(text.toUpperCase())} disabled={!text} accentColor={tool.accentColor}>UPPERCASE</GlassButton>
-          <GlassButton onClick={() => setText(text.toLowerCase())} disabled={!text} accentColor={tool.accentColor}>lowercase</GlassButton>
-          <GlassButton onClick={() => setText(toTitleCase(text))} disabled={!text} accentColor={tool.accentColor}>Title Case</GlassButton>
-          <GlassButton onClick={() => setText(toSentenceCase(text))} disabled={!text} accentColor={tool.accentColor}>Sentence case</GlassButton>
+          <Button onClick={() => setText(text.toUpperCase())} disabled={!text}>UPPERCASE</Button>
+          <Button onClick={() => setText(text.toLowerCase())} disabled={!text}>lowercase</Button>
+          <Button onClick={() => setText(toTitleCase(text))} disabled={!text}>Title Case</Button>
+          <Button onClick={() => setText(toSentenceCase(text))} disabled={!text}>Sentence case</Button>
         </div>
       </div>
     </ToolPageLayout>

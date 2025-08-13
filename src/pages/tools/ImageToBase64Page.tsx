@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { GlassTextarea } from '@/components/ui/GlassInput';
+import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
 import { UploadCloud, Trash2 } from 'lucide-react';
@@ -51,12 +51,11 @@ const ImageToBase64Page = () => {
               </Button>
             </div>
             <div className="w-full md:w-2/3 relative">
-              <GlassTextarea
+              <Textarea
                 value={base64}
                 readOnly
                 placeholder="Base64 output will appear here..."
-                className="min-h-[250px] text-sm p-4 pr-14"
-                accentColor={tool.accentColor}
+                className="min-h-[250px] text-sm p-4 pr-14 bg-secondary/40 border-white/10"
               />
               <CopyButton textToCopy={base64} className="absolute top-3 right-3" />
             </div>
