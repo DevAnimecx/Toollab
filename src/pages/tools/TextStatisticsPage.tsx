@@ -31,9 +31,9 @@ const TextStatisticsPage = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Paste your text here for analysis..."
-          className="min-h-[300px]"
+          className="min-h-[300px] bg-secondary/40 border-white/10"
         />
-        <Card>
+        <Card className="bg-secondary/40 border-white/10">
           <CardHeader>
             <CardTitle>Analysis Results</CardTitle>
           </CardHeader>

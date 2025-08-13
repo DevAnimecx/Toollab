@@ -28,7 +28,7 @@ const RandomNameGeneratorPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-4">
           <Button onClick={generateNames}>Generate Names</Button>
-          <ScrollArea className="h-72 w-full rounded-md border p-4">
+          <ScrollArea className="h-72 w-full rounded-md border p-4 bg-secondary/40 border-white/10">
             {names.length > 0 ? (
               names.map((name, i) => <div key={i} className="py-1">{name}</div>)
             ) : (
@@ -39,7 +39,7 @@ const RandomNameGeneratorPage = () => {
         <div className="lg:col-span-1">
           <ToolSettings>
             <SettingsRow label="Number of names">
-              <Input type="number" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-24" />
+              <Input type="number" value={count} onChange={(e) => setCount(Number(e.target.value))} className="w-24 bg-secondary/40 border-white/10" />
             </SettingsRow>
           </ToolSettings>
         </div>

@@ -27,17 +27,17 @@ const TimeZoneConverterPage = () => {
       <div className="max-w-2xl mx-auto space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label>From</label>
+            <label className="text-sm font-medium">From</label>
             <Select value={fromTz} onValueChange={setFromTz}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent className="max-h-60">
                 {timeZones.map(tz => <SelectItem key={tz} value={tz}>{tz}</SelectItem>)}
               </SelectContent>
             </Select>
-            <Input type="datetime-local" value={dateTime} onChange={e => setDateTime(e.target.value)} className="mt-2" />
+            <Input type="datetime-local" value={dateTime} onChange={e => setDateTime(e.target.value)} className="mt-2 bg-secondary/40 border-white/10" />
           </div>
           <div>
-            <label>To</label>
+            <label className="text-sm font-medium">To</label>
             <Select value={toTz} onValueChange={setToTz}>
               <SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent className="max-h-60">

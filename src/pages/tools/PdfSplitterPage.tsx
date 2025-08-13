@@ -58,7 +58,7 @@ const PdfSplitterPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="max-w-lg mx-auto space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
+        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
           <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
           <h3 className="mt-4 text-lg font-medium text-foreground">{file ? file.name : 'Upload a PDF'}</h3>
           <input type="file" accept=".pdf" onChange={(e) => setFile(e.target.files?.[0] || null)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
@@ -67,6 +67,7 @@ const PdfSplitterPage = () => {
           placeholder="Enter page ranges (e.g., 1-3, 5, 8-10)"
           value={ranges}
           onChange={(e) => setRanges(e.target.value)}
+          className="h-12 bg-secondary/40 border-white/10"
         />
         <Button onClick={handleSplit} disabled={!file || !ranges} size="lg" className="w-full">
           Split PDF
