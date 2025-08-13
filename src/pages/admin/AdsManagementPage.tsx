@@ -16,7 +16,7 @@ import { CSS } from '@dnd-kit/utilities';
 const AdForm = ({ ad, onSave, onCancel }: { ad?: Ad | null, onSave: (ad: Ad) => void, onCancel: () => void }) => {
   const [headline, setHeadline] = useState(ad?.headline || '');
   const [subtext, setSubtext] = useState(ad?.subtext || '');
-  const [imageUrl, setImageUrl] = useState(ad?.imageUrl || '');
+  const [background, setBackground] = useState(ad?.background || 'bg-gradient-to-br from-gray-700 to-gray-900');
   const [targetUrl, setTargetUrl] = useState(ad?.targetUrl || '');
   const [duration, setDuration] = useState(ad?.duration || 10);
 
@@ -25,7 +25,7 @@ const AdForm = ({ ad, onSave, onCancel }: { ad?: Ad | null, onSave: (ad: Ad) => 
       id: ad?.id || `ad${Date.now()}`,
       headline,
       subtext,
-      imageUrl,
+      background,
       targetUrl,
       duration,
       status: ad?.status || 'active',
@@ -37,7 +37,7 @@ const AdForm = ({ ad, onSave, onCancel }: { ad?: Ad | null, onSave: (ad: Ad) => 
     <div className="space-y-4 py-4">
       <div><Label htmlFor="headline">Headline</Label><Input id="headline" value={headline} onChange={e => setHeadline(e.target.value)} className="bg-secondary/50" /></div>
       <div><Label htmlFor="subtext">Subtext</Label><Input id="subtext" value={subtext} onChange={e => setSubtext(e.target.value)} className="bg-secondary/50" /></div>
-      <div><Label htmlFor="imageUrl">Image URL</Label><Input id="imageUrl" value={imageUrl} onChange={e => setImageUrl(e.target.value)} className="bg-secondary/50" /></div>
+      <div><Label htmlFor="background">Background Class</Label><Input id="background" value={background} onChange={e => setBackground(e.target.value)} className="bg-secondary/50" placeholder="e.g., bg-gradient-to-br from-blue-500 to-purple-600" /></div>
       <div><Label htmlFor="targetUrl">Target URL</Label><Input id="targetUrl" value={targetUrl} onChange={e => setTargetUrl(e.target.value)} className="bg-secondary/50" /></div>
       <div><Label htmlFor="duration">Duration (seconds)</Label><Input id="duration" type="number" value={duration} onChange={e => setDuration(Number(e.target.value))} className="bg-secondary/50" /></div>
       <DialogFooter><Button variant="ghost" onClick={onCancel}>Cancel</Button><Button onClick={handleSubmit}>Save Ad</Button></DialogFooter>
