@@ -71,33 +71,43 @@ export default {
         'glow': '0 0 12px var(--accent-color, hsl(var(--primary)))',
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
+        "accordion-up": { from: { height: "var(--radix-accordion-content-height)" }, to: { height: "0" } },
+        "fade-in-scale": {
+          "0%": { opacity: "0", transform: "scale(0.95)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        "slide-in-underline": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" },
         },
-        "fade-in": {
-          "from": { opacity: "0" },
-          "to": { opacity: "1" },
+        "fade-out-slow": {
+          "0%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { opacity: "0" },
         },
-        "light-sweep": {
-          "0%": { "--sweep-percent": "-100%" },
-          "100%": { "--sweep-percent": "200%" },
+        "subtle-pulse": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.05)" },
         },
-        "progress-bar": {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(0%)" },
+        "staggered-fade-slide-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "slide-down": {
+          "0%": { opacity: "0", transform: "translateY(-100%)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 1s ease-out",
-        "light-sweep": "light-sweep 1.5s ease-in-out forwards",
-        "progress-bar": "progress-bar 1.5s ease-out forwards",
+        "fade-in-scale": "fade-in-scale 1s ease-out forwards",
+        "slide-in-underline": "slide-in-underline 0.8s 0.5s ease-out forwards",
+        "fade-out-slow": "fade-out-slow 2s ease-out forwards",
+        "subtle-pulse": "subtle-pulse 10s infinite ease-in-out",
+        "staggered-fade-slide-up": "staggered-fade-slide-up 0.5s ease-out forwards",
+        "slide-down": "slide-down 0.5s 1.5s ease-out forwards",
       },
     },
   },

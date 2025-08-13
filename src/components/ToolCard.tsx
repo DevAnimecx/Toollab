@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { GlassBadge } from "@/components/ui/GlassBadge";
-import React, { useRef } from "react";
+import React from "react";
 
 interface ToolCardProps {
   icon: React.ReactNode;
@@ -9,47 +9,26 @@ interface ToolCardProps {
   href: string;
   accentColor: string;
   category: string;
+  animationDelay?: string;
 }
 
-const ToolCard = ({ icon, name, description, href, accentColor, category }: ToolCardProps) => {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / (width / 2);
-    const y = (e.clientY - top - height / 2) / (height / 2);
-    cardRef.current.style.setProperty('--rotate-y', `${x * 8}deg`);
-    cardRef.current.style.setProperty('--rotate-x', `${-y * 8}deg`);
-  };
-
-  const handleMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.setProperty('--rotate-y', '0deg');
-    cardRef.current.style.setProperty('--rotate-x', '0deg');
-  };
-
+const ToolCard = ({ icon, name, description, href, accentColor, category, animationDelay }: ToolCardProps) => {
   const style = {
     '--accent-color': accentColor,
-    '--rotate-x': '0deg',
-    '--rotate-y': '0deg',
+    'animationDelay': animationDelay,
   } as React.CSSProperties;
 
   return (
-    <Link to={href} className="group block h-full" style={{ perspective: '1000px' }}>
+    <Link to={href} className="group block h-full opacity-0 animate-staggered-fade-slide-up" style={style}>
       <div
-        ref={cardRef}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={style}
         className="relative p-6 rounded-xl h-full overflow-hidden transition-all duration-300 ease-out
-                      bg-[rgba(19,43,71,0.65)] backdrop-blur-lg border border-white/10
-                      hover:scale-105 hover:border-[var(--accent-color)]/50 hover:shadow-2xl hover:shadow-[var(--accent-color)]/10"
+                      bg-[rgba(15,25,45,0.45)] backdrop-blur-xl border border-[rgba(255,255,255,0.15)]
+                      group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-black/20"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)] to-transparent opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
 
-        <div className="relative z-10 flex flex-col h-full text-center items-center" style={{ transform: 'rotateX(var(--rotate-x)) rotateY(var(--rotate-y))' }}>
-          <div className="mb-4 text-[var(--accent-color)] transition-transform duration-300 group-hover:-translate-y-1">
+        <div className="relative z-10 flex flex-col h-full text-center items-center">
+          <div className="mb-4 text-[var(--accent-color)] transition-transform duration-300 group-hover:scale-110">
             {icon}
           </div>
           <h3 className="font-heading text-xl font-bold text-white mb-2">{name}</h3>
