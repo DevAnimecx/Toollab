@@ -32,13 +32,13 @@ const TextMergePage = () => {
               value={textA}
               onChange={(e) => setTextA(e.target.value)}
               placeholder="First text block"
-              className="min-h-[200px]"
+              className="min-h-[200px] bg-secondary/40 border-white/10"
             />
             <Textarea
               value={textB}
               onChange={(e) => setTextB(e.target.value)}
               placeholder="Second text block"
-              className="min-h-[200px]"
+              className="min-h-[200px] bg-secondary/40 border-white/10"
             />
           </div>
           <Button onClick={handleMerge} disabled={!textA && !textB}>Merge Text</Button>

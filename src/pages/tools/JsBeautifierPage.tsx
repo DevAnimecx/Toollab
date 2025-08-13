@@ -31,7 +31,7 @@ const JsBeautifierPage = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your JavaScript code here"
-            className="min-h-[300px] font-mono"
+            className="min-h-[300px] font-mono bg-secondary/40 border-white/10"
           />
           <div className="relative bg-card p-4 rounded-md border min-h-[300px]">
             <SyntaxHighlighter language="javascript" style={atomDark} customStyle={{ background: 'transparent', margin: 0, padding: 0 }}>

@@ -34,7 +34,7 @@ const CaesarCipherPage = () => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Input"
-            className="min-h-[200px]"
+            className="min-h-[200px] bg-secondary/40 border-white/10"
           />
           <Textarea
             value={processedText}

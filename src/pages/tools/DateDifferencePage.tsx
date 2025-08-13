@@ -32,15 +32,15 @@ const DateDifferencePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <label className="text-sm font-medium">Start Date</label>
-            <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} className="bg-secondary/40 border-white/10" />
           </div>
           <div className="space-y-2">
             <label className="text-sm font-medium">End Date</label>
-            <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} className="bg-secondary/40 border-white/10" />
           </div>
         </div>
         {diff && (
-          <Card>
+          <Card className="bg-secondary/40 border-white/10">
             <CardContent className="p-6 space-y-4">
               <h3 className="font-semibold text-center">Result</h3>
               <div className="grid grid-cols-2 gap-4 text-center">

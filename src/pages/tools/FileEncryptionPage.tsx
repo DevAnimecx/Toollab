@@ -62,7 +62,7 @@ const FileEncryptionPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="max-w-lg mx-auto space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
+        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
           <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
           <h3 className="mt-4 text-lg font-medium text-foreground">
             {file ? file.name : 'Upload a File'}
@@ -74,7 +74,7 @@ const FileEncryptionPage = () => {
           placeholder="Enter a strong password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="h-12 text-lg"
+          className="h-12 text-lg bg-secondary/40 border-white/10"
         />
         <div className="grid grid-cols-2 gap-4">
           <Button onClick={() => processFile('encrypt')} size="lg" disabled={!file || !password}>

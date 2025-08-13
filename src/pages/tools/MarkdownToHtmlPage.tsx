@@ -27,7 +27,7 @@ const MarkdownToHtmlPage = () => {
           <Textarea
             value={markdown}
             onChange={(e) => setMarkdown(e.target.value)}
-            className="min-h-[300px] font-mono"
+            className="min-h-[300px] font-mono bg-secondary/40 border-white/10"
           />
         </div>
         <div className="space-y-2">
