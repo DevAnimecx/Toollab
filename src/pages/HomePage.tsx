@@ -2,6 +2,7 @@ import ToolCard from "@/components/ToolCard";
 import { Button } from "@/components/ui/button";
 import { tools } from "@/data/tools";
 import { Link } from "react-router-dom";
+import Stats from "@/components/Stats";
 
 const featuredToolPaths = [
   "/tools/json-formatter",
@@ -20,7 +21,7 @@ const HomePage = () => {
           Your Ultimate Client-Side Toolkit
         </h1>
         <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-          Toollab offers 70+ fast, secure, and free tools that work entirely in your browser. No uploads, no waiting. Just instant results.
+          Toollab offers {tools.length}+ fast, secure, and free tools that work entirely in your browser. No uploads, no waiting. Just instant results.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4">
           <Button asChild size="lg">
@@ -35,6 +36,8 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      <Stats />
 
       <section id="featured-tools" className="py-16">
         <h2 className="text-3xl font-bold text-center mb-10">Most Popular Tools</h2>
