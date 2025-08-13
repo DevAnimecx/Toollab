@@ -28,7 +28,7 @@ const PasswordGeneratorPage = () => {
       symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?',
     };
     
-    const similarChars = /[ilI1|oO0]/g;
+    const similarChars = /[ilI1oO0]/g;
 
     let charset = '';
     if (options.uppercase) charset += chars.uppercase;
