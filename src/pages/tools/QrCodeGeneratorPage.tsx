@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { GlassInput } from '@/components/ui/GlassInput';
+import { GlassButton } from '@/components/ui/GlassButton';
 import { QRCodeCanvas } from 'qrcode.react';
 import { Download } from 'lucide-react';
 
@@ -30,20 +30,21 @@ const QrCodeGeneratorPage = () => {
           <QRCodeCanvas value={text} size={256} />
         </div>
         <div className="w-full max-w-sm space-y-4">
-          <Input
+          <GlassInput
             type="text"
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text or URL"
             className="text-base"
+            accentColor={tool.accentColor}
           />
           <div className="grid grid-cols-2 gap-4">
-            <Button onClick={() => downloadQR('png')} disabled={!text}>
+            <GlassButton onClick={() => downloadQR('png')} disabled={!text} accentColor={tool.accentColor}>
               <Download className="mr-2 h-4 w-4" /> Download PNG
-            </Button>
-            <Button onClick={() => downloadQR('svg')} disabled={!text} variant="secondary">
+            </GlassButton>
+            <GlassButton onClick={() => downloadQR('svg')} disabled={!text} accentColor={tool.accentColor}>
               <Download className="mr-2 h-4 w-4" /> Download SVG
-            </Button>
+            </GlassButton>
           </div>
         </div>
       </div>

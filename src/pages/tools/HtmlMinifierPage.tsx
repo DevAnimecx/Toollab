@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { GlassTextarea } from '@/components/ui/GlassInput';
+import { GlassButton } from '@/components/ui/GlassButton';
 import CopyButton from '@/components/tool/CopyButton';
 import { minify } from 'html-minifier-terser';
 import { showSuccess } from '@/utils/toast';
@@ -35,11 +35,12 @@ const HtmlMinifierPage = () => {
             <h3 className="font-semibold">Input HTML</h3>
             <CopyButton textToCopy={input} />
           </div>
-          <Textarea
+          <GlassTextarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your HTML code here"
             className="min-h-[300px] font-mono text-sm"
+            accentColor={tool.accentColor}
           />
         </div>
         <div className="space-y-2">
@@ -47,16 +48,17 @@ const HtmlMinifierPage = () => {
             <h3 className="font-semibold">Minified Output</h3>
             <CopyButton textToCopy={output} />
           </div>
-          <Textarea
+          <GlassTextarea
             value={output}
             readOnly
             placeholder="Minified HTML will appear here"
             className="min-h-[300px] font-mono text-sm bg-muted/50"
+            accentColor={tool.accentColor}
           />
         </div>
       </div>
       <div className="mt-6 flex items-center justify-center gap-6">
-        <Button onClick={handleMinify} size="lg" disabled={!input}>Minify HTML</Button>
+        <GlassButton onClick={handleMinify} size="lg" disabled={!input} accentColor={tool.accentColor}>Minify HTML</GlassButton>
         {savings > 0 && (
           <p className="text-green-500 font-semibold">
             Saved {savings.toFixed(2)}%

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { Input } from '@/components/ui/input';
+import { GlassInput } from '@/components/ui/GlassInput';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Slider } from '@/components/ui/slider';
@@ -60,7 +60,7 @@ const PasswordGeneratorPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="max-w-md mx-auto space-y-6">
         <div className="relative">
-          <Input type="text" value={password} readOnly className="text-2xl h-14 font-mono pr-24" />
+          <GlassInput type="text" value={password} readOnly className="text-2xl h-14 font-mono pr-24" accentColor={tool.accentColor} />
           <div className="absolute top-1/2 -translate-y-1/2 right-3 flex gap-2">
             <Button variant="outline" size="icon" onClick={generatePassword}><RefreshCw className="h-4 w-4" /></Button>
             <CopyButton textToCopy={password} />
