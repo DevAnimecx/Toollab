@@ -43,7 +43,7 @@ const TextScramblerPage = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter text to scramble"
-            className="min-h-[200px]"
+            className="min-h-[200px] bg-secondary/40 border-white/10"
           />
           <div className="relative">
             <Textarea

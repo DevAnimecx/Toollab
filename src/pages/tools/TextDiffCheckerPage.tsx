@@ -25,13 +25,13 @@ const TextDiffCheckerPage = () => {
               value={textA}
               onChange={(e) => setTextA(e.target.value)}
               placeholder="Text A"
-              className="min-h-[200px]"
+              className="min-h-[200px] bg-secondary/40 border-white/10"
             />
             <Textarea
               value={textB}
               onChange={(e) => setTextB(e.target.value)}
               placeholder="Text B"
-              className="min-h-[200px]"
+              className="min-h-[200px] bg-secondary/40 border-white/10"
             />
           </div>
           <div>

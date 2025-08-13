@@ -38,7 +38,7 @@ const Base64EncoderPage = () => {
             value={plain}
             onChange={(e) => handlePlainChange(e.target.value)}
             placeholder="Type text to encode..."
-            className="min-h-[250px] text-base"
+            className="min-h-[250px] text-base bg-secondary/40 border-white/10"
           />
         </div>
         <div className="flex-shrink-0 self-center">
@@ -50,7 +50,7 @@ const Base64EncoderPage = () => {
             value={encoded}
             onChange={(e) => handleEncodedChange(e.target.value)}
             placeholder="Paste Base64 to decode..."
-            className="min-h-[250px] text-base font-mono"
+            className="min-h-[250px] text-base font-mono bg-secondary/40 border-white/10"
           />
         </div>
       </div>

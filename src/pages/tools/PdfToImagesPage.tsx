@@ -62,7 +62,7 @@ const PdfToImagesPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
+        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
           <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
           <h3 className="mt-4 text-lg font-medium text-foreground">Upload a PDF</h3>
           <p className="mt-1 text-sm text-muted-foreground">Drag and drop or click to select a file.</p>

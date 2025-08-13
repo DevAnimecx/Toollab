@@ -4,6 +4,7 @@ import { tools } from '@/data/tools';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowRightLeft } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 const unitConfig = {
   Length: {
@@ -63,35 +64,37 @@ const UnitConverterPage = () => {
 
   return (
     <ToolPageLayout tool={tool}>
-      <div className="max-w-2xl mx-auto space-y-6">
-        <Select value={category} onValueChange={(v) => setCategory(v as keyof typeof unitConfig)}>
-          <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
-          <SelectContent>
-            {Object.keys(unitConfig).map(cat => <SelectItem key={cat} value={cat}>{cat}</SelectItem>)}
-          </SelectContent>
-        </Select>
-        <div className="flex items-center gap-4">
-          <div className="w-full space-y-2">
-            <Select value={fromUnit} onValueChange={setFromUnit}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                {Object.keys(unitConfig[category]).map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
-              </SelectContent>
-            </Select>
-            <Input type="number" value={fromValue} onChange={e => setFromValue(e.target.value)} className="text-lg" />
+      <Card className="bg-secondary/40 border-white/10">
+        <CardContent className="pt-6 space-y-6">
+          <Select value={category} onValueChange={(v) => setCategory(v as keyof typeof unitConfig)}>
+            <SelectTrigger><SelectValue placeholder="Select category" /></SelectTrigger>
+            <SelectContent>
+              {Object.keys(unitConfig).map(cat => <SelectItem key={cat} value={cat}>{cat}</SelectItem>)}
+            </SelectContent>
+          </Select>
+          <div className="flex items-center gap-4">
+            <div className="w-full space-y-2">
+              <Select value={fromUnit} onValueChange={setFromUnit}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {Object.keys(unitConfig[category]).map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
+                </SelectContent>
+              </Select>
+              <Input type="number" value={fromValue} onChange={e => setFromValue(e.target.value)} className="text-lg" />
+            </div>
+            <ArrowRightLeft className="h-6 w-6 text-muted-foreground flex-shrink-0" />
+            <div className="w-full space-y-2">
+              <Select value={toUnit} onValueChange={setToUnit}>
+                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  {Object.keys(unitConfig[category]).map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
+                </SelectContent>
+              </Select>
+              <Input type="text" value={toValue} readOnly className="text-lg bg-muted/50" />
+            </div>
           </div>
-          <ArrowRightLeft className="h-6 w-6 text-muted-foreground flex-shrink-0" />
-          <div className="w-full space-y-2">
-            <Select value={toUnit} onValueChange={setToUnit}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
-              <SelectContent>
-                {Object.keys(unitConfig[category]).map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
-              </SelectContent>
-            </Select>
-            <Input type="text" value={toValue} readOnly className="text-lg bg-muted/50" />
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </ToolPageLayout>
   );
 };
