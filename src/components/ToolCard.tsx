@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import React from "react";
+import { cn } from "@/lib/utils";
+import { Tool } from "@/data/tools";
 
-interface ToolCardProps {
-  icon: React.ReactNode;
-  name: string;
-  description: string;
-  href: string;
-  accentColor: string;
-  category: string;
+interface ToolCardProps extends Pick<Tool, 'name' | 'description' | 'path' | 'icon' | 'accentColor' | 'category' | 'popularity'> {
   animationDelay?: string;
 }
 
-const ToolCard = ({ icon, name, description, href, accentColor, category, animationDelay }: ToolCardProps) => {
+const PopularityBadge = ({ popularity }: { popularity: ToolCardProps['popularity'] }) => {
+  if (!popularity) return null;
+
+  const badgeStyles = {
+    popular: "bg-yellow-400/20 text-yellow-300 border-yellow-400/30",
+    hot: "bg-red-500/20 text-red-400 border-red-500/30 animate-pulse",
+    new: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+  };
+
+  return (
+    <Badge className={cn("absolute top-3 right-3 capitalize", badgeStyles[popularity])}>
+      {popularity}
+    </Badge>
+  );
+};
+
+const ToolCard = ({ icon, name, description, href, accentColor, category, popularity, animationDelay }: ToolCardProps) => {
   const style = {
     '--accent-color': accentColor,
     'animationDelay': animationDelay,
@@ -25,9 +37,10 @@ const ToolCard = ({ icon, name, description, href, accentColor, category, animat
                       bg-secondary/40 backdrop-blur-lg border border-white/10
                       group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-black/30 group-hover:border-white/20"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)] to-transparent opacity-10 group-hover:opacity-20 transition-opacity duration-300"></div>
+        <div className="absolute top-0 left-0 h-1 w-full bg-[var(--accent-color)] opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+        <PopularityBadge popularity={popularity} />
 
-        <div className="relative z-10 flex flex-col h-full text-center items-center">
+        <div className="relative z-10 flex flex-col h-full text-center items-center pt-4">
           <div className="mb-4 text-[var(--accent-color)] transition-transform duration-300 group-hover:scale-110">
             {icon}
           </div>

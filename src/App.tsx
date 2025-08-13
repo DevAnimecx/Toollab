@@ -20,6 +20,7 @@ import { tools } from "./data/tools";
 import Loader from "./components/Loader";
 import GlassBackground from "./components/GlassBackground";
 import SkeletonCard from "./components/SkeletonCard";
+import { BottomCreditsBar } from "./components/BottomCreditsBar";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const AppLayout = () => (
       </Suspense>
     </main>
     <Footer />
+    <BottomCreditsBar />
   </div>
 );
 

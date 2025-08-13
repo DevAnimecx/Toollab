@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { Search, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { FontToggle } from "@/components/FontToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./Logo";
+import { SearchBar } from "./SearchBar";
 
 const Header = () => {
   const navLinks = [
@@ -32,6 +32,9 @@ const Header = () => {
           ))}
         </nav>
         <div className="flex flex-1 items-center justify-end space-x-2">
+          <div className="w-full flex-1 md:w-auto md:flex-none">
+             {/* The search bar will be added to the home page hero */}
+          </div>
           <FontToggle />
           <ThemeToggle />
           
