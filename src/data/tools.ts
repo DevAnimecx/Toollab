@@ -3,7 +3,7 @@ import {
   CaseSensitive, Rows, Image, FileText, Braces, Code, QrCode, Ruler, Lock, Fingerprint,
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
-  Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
+  Combine, BarChart, Scissors, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
   Columns, Key, Highlighter, Scale, Eraser, Stamp, ShieldOff, ArrowLeftRight, Calculator,
   Regex, Table, Landmark, Banknote, FileX2
 } from 'lucide-react';
@@ -101,7 +101,7 @@ export const tools: Tool[] = [
   // Batch 3
   { name: 'Text Merge Tool', description: 'Merge multiple text blocks into one with custom separators.', category: 'Text', tags: ['text', 'merge', 'utility', 'join'], icon: Combine, path: '/tools/text-merge', component: TextMergePage },
   { name: 'Text Statistics Analyzer', description: 'Show detailed stats like word count, reading time, and more.', category: 'Text', tags: ['text', 'analysis', 'productivity', 'stats'], icon: BarChart, path: '/tools/text-statistics', component: TextStatisticsPage },
-  { name: 'PDF Splitter', description: 'Split a PDF into separate files by page range.', category: 'File', tags: ['pdf', 'split', 'utility', 'organize'], icon: FileScissor, path: '/tools/pdf-splitter', component: PdfSplitterPage },
+  { name: 'PDF Splitter', description: 'Split a PDF into separate files by page range.', category: 'File', tags: ['pdf', 'split', 'utility', 'organize'], icon: Scissors, path: '/tools/pdf-splitter', component: PdfSplitterPage },
   { name: 'XML Formatter & Validator', description: 'Format, beautify, and validate XML code.', category: 'Coding', tags: ['xml', 'coding', 'dev', 'formatter'], icon: FileXml, path: '/tools/xml-formatter', component: XmlFormatterPage },
   { name: 'CSV to JSON Converter', description: 'Convert CSV data to JSON format with multiple options.', category: 'Coding', tags: ['csv', 'json', 'conversion', 'data'], icon: Table2, path: '/tools/csv-to-json', component: CsvToJsonPage },
   { name: 'Random Name Generator', description: 'Generate random names for various purposes.', category: 'Everyday', tags: ['random', 'name', 'utility', 'generator'], icon: Users, path: '/tools/random-name-generator', component: RandomNameGeneratorPage },
