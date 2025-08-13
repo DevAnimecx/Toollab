@@ -20,8 +20,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
-        serif: ["var(--font-serif)", "serif"],
-        heading: ["var(--font-heading)", "sans-serif"],
+        heading: ["var(--font-heading)", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -48,6 +47,11 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          text: "#4DA8DA",
+          file: "#48E6B0",
+          coding: "#FFB84D",
+          everyday: "#FF7F7F",
+          security: "#C77DFF",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -62,6 +66,9 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        'glow': '0 0 12px var(--accent-color, hsl(var(--primary)))',
       },
       keyframes: {
         "accordion-down": {

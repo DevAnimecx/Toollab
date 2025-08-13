@@ -1,8 +1,8 @@
 import ToolCard from "@/components/ToolCard";
-import { Button } from "@/components/ui/button";
 import { tools } from "@/data/tools";
 import { Link } from "react-router-dom";
 import Stats from "@/components/Stats";
+import { GlassButton } from "@/components/ui/GlassButton";
 
 const featuredToolPaths = [
   "/tools/json-formatter",
@@ -17,23 +17,16 @@ const HomePage = () => {
   return (
     <div className="container mx-auto px-4">
       <section className="text-center py-20">
-        <h1 className="text-5xl md:text-7xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-r from-primary to-foreground">
+        <h1 className="text-5xl md:text-7xl font-bold font-heading bg-clip-text text-transparent bg-gradient-to-b from-white to-muted-foreground">
           Your Ultimate Client-Side Toolkit
         </h1>
         <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
           Toollab offers {tools.length}+ fast, secure, and free tools that work entirely in your browser. No uploads, no waiting. Just instant results.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-4">
-          <Button asChild size="lg">
+          <GlassButton asChild size="lg" accentColor="#4DA8DA">
             <Link to="/tools">Browse All Tools</Link>
-          </Button>
-          <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
-            {featuredTools.slice(0, 3).map(tool => (
-              <Button asChild variant="link" className="text-muted-foreground hover:text-primary" key={tool.path}>
-                <Link to={tool.path}>{tool.name}</Link>
-              </Button>
-            ))}
-          </div>
+          </GlassButton>
         </div>
       </section>
 
@@ -49,6 +42,8 @@ const HomePage = () => {
               description={tool.description}
               href={tool.path}
               icon={<tool.icon className="h-8 w-8" />}
+              accentColor={tool.accentColor}
+              category={tool.category}
             />
           ))}
         </div>

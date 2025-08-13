@@ -1,8 +1,8 @@
 import React from 'react';
-import { Tool, categories, tools } from '@/data/tools';
-import { Badge } from '@/components/ui/badge';
+import { Tool, categories } from '@/data/tools';
 import ToolCard from '@/components/ToolCard';
 import { Link } from 'react-router-dom';
+import { GlassBadge } from '../ui/GlassBadge';
 
 interface ToolPageLayoutProps {
   tool: Tool;
@@ -14,23 +14,26 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
     .filter((t) => t.category === tool.category && t.name !== tool.name)
     .slice(0, 4);
 
-  const categoryInfo = categories[tool.category];
+  const style = {
+    '--accent-color': tool.accentColor,
+  } as React.CSSProperties;
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <header className="text-center mb-12">
-        <div className="flex justify-center items-center gap-4 mb-4">
-          <div className={`p-3 rounded-lg ${categoryInfo.color}`}>
-            <tool.icon className="h-6 w-6" />
+    <div className="container mx-auto px-4 py-12" style={style}>
+      <header className="relative text-center mb-12 p-8 rounded-xl overflow-hidden border border-white/10 bg-secondary/40 backdrop-blur-lg">
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)] to-transparent opacity-10"></div>
+        <div className="relative z-10">
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <div className="p-3 rounded-lg bg-black/20 text-[var(--accent-color)]">
+              <tool.icon className="h-8 w-8" />
+            </div>
+            <h1 className="text-4xl md:text-5xl font-bold font-heading text-glow">{tool.name}</h1>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold font-heading">{tool.name}</h1>
+          <GlassBadge accentColor={tool.accentColor}>{tool.category}</GlassBadge>
+          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+            {tool.description}
+          </p>
         </div>
-        <Badge variant="outline" className={`py-1 px-3 rounded-full text-sm border ${categoryInfo.color}`}>
-          {tool.category}
-        </Badge>
-        <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          {tool.description}
-        </p>
       </header>
 
       <main className="max-w-4xl mx-auto mb-20">
@@ -38,8 +41,8 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
       </main>
 
       {relatedTools.length > 0 && (
-        <footer className="border-t pt-12">
-          <h2 className="text-2xl font-bold text-center mb-8">Related Tools</h2>
+        <footer className="border-t border-white/10 pt-12">
+          <h2 className="text-3xl font-bold text-center mb-8">Related Tools</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatedTools.map((relatedTool) => (
               <ToolCard
@@ -48,6 +51,8 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
                 description={relatedTool.description}
                 href={relatedTool.path}
                 icon={<relatedTool.icon className="h-8 w-8" />}
+                accentColor={relatedTool.accentColor}
+                category={relatedTool.category}
               />
             ))}
           </div>

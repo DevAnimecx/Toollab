@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { GlassTextarea } from '@/components/ui/GlassInput';
+import { GlassButton } from '@/components/ui/GlassButton';
 import CopyButton from '@/components/tool/CopyButton';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
@@ -37,16 +37,17 @@ const JsonFormatterPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
-          <h3 className="font-semibold">Input JSON</h3>
-          <Textarea
+          <h3 className="font-semibold mb-2">Input JSON</h3>
+          <GlassTextarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your JSON here"
             className="min-h-[300px] font-mono text-sm"
+            accentColor={tool.accentColor}
           />
         </div>
         <div className="space-y-2">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center mb-2">
             <h3 className="font-semibold">Formatted Output</h3>
             {isValid !== null && (
               <span className={`text-sm font-bold ${isValid ? 'text-green-500' : 'text-red-500'}`}>
@@ -54,7 +55,7 @@ const JsonFormatterPage = () => {
               </span>
             )}
           </div>
-          <div className="relative bg-card p-4 rounded-md border min-h-[300px]">
+          <div className="relative bg-secondary/50 p-4 rounded-md border border-white/10 min-h-[300px]">
             {formatted ? (
               <>
                 {isValid ? (
@@ -73,7 +74,7 @@ const JsonFormatterPage = () => {
         </div>
       </div>
       <div className="mt-6 text-center">
-        <Button onClick={handleFormat} size="lg">Format JSON</Button>
+        <GlassButton onClick={handleFormat} size="lg" accentColor={tool.accentColor}>Format JSON</GlassButton>
       </div>
     </ToolPageLayout>
   );
