@@ -2,7 +2,8 @@ import React from 'react';
 import {
   CaseSensitive, Rows, Image, FileText, Braces, Code, QrCode, Ruler, Lock, Fingerprint,
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
-  FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2
+  FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
+  Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2
 } from 'lucide-react';
 
 export interface Tool {
@@ -44,6 +45,15 @@ const ImageColorPickerPage = React.lazy(() => import('@/pages/tools/ImageColorPi
 const DateDifferencePage = React.lazy(() => import('@/pages/tools/DateDifferencePage'));
 const CaesarCipherPage = React.lazy(() => import('@/pages/tools/CaesarCipherPage'));
 const FileEncryptionPage = React.lazy(() => import('@/pages/tools/FileEncryptionPage'));
+const TextMergePage = React.lazy(() => import('@/pages/tools/TextMergePage'));
+const TextStatisticsPage = React.lazy(() => import('@/pages/tools/TextStatisticsPage'));
+const PdfSplitterPage = React.lazy(() => import('@/pages/tools/PdfSplitterPage'));
+const XmlFormatterPage = React.lazy(() => import('@/pages/tools/XmlFormatterPage'));
+const CsvToJsonPage = React.lazy(() => import('@/pages/tools/CsvToJsonPage'));
+const RandomNameGeneratorPage = React.lazy(() => import('@/pages/tools/RandomNameGeneratorPage'));
+const TimeZoneConverterPage = React.lazy(() => import('@/pages/tools/TimeZoneConverterPage'));
+const Rot13Page = React.lazy(() => import('@/pages/tools/Rot13Page'));
+const ImageMetadataViewerPage = React.lazy(() => import('@/pages/tools/ImageMetadataViewerPage'));
 
 
 export const tools: Tool[] = [
@@ -70,4 +80,15 @@ export const tools: Tool[] = [
   { name: 'Date Difference Calculator', description: 'Calculate the duration between two dates.', category: 'Everyday', tags: ['date', 'time', 'calculation', 'duration'], icon: CalendarDays, path: '/tools/date-difference-calculator', component: DateDifferencePage },
   { name: 'Caesar Cipher', description: 'Encode and decode text using the Caesar cipher.', category: 'Security', tags: ['cipher', 'encryption', 'text', 'security'], icon: KeyRound, path: '/tools/caesar-cipher', component: CaesarCipherPage },
   { name: 'File Encryption (AES)', description: 'Encrypt and decrypt files securely in your browser.', category: 'Security', tags: ['file', 'security', 'encryption', 'aes'], icon: FileLock2, path: '/tools/file-encryption', component: FileEncryptionPage },
+
+  // Batch 3
+  { name: 'Text Merge Tool', description: 'Merge multiple text blocks into one with custom separators.', category: 'Text', tags: ['text', 'merge', 'utility', 'join'], icon: Combine, path: '/tools/text-merge', component: TextMergePage },
+  { name: 'Text Statistics Analyzer', description: 'Show detailed stats like word count, reading time, and more.', category: 'Text', tags: ['text', 'analysis', 'productivity', 'stats'], icon: BarChart, path: '/tools/text-statistics', component: TextStatisticsPage },
+  { name: 'PDF Splitter', description: 'Split a PDF into separate files by page range.', category: 'File', tags: ['pdf', 'split', 'utility', 'organize'], icon: FileScissor, path: '/tools/pdf-splitter', component: PdfSplitterPage },
+  { name: 'XML Formatter & Validator', description: 'Format, beautify, and validate XML code.', category: 'Coding', tags: ['xml', 'coding', 'dev', 'formatter'], icon: FileXml, path: '/tools/xml-formatter', component: XmlFormatterPage },
+  { name: 'CSV to JSON Converter', description: 'Convert CSV data to JSON format with multiple options.', category: 'Coding', tags: ['csv', 'json', 'conversion', 'data'], icon: Table2, path: '/tools/csv-to-json', component: CsvToJsonPage },
+  { name: 'Random Name Generator', description: 'Generate random names for various purposes.', category: 'Everyday', tags: ['random', 'name', 'utility', 'generator'], icon: Users, path: '/tools/random-name-generator', component: RandomNameGeneratorPage },
+  { name: 'Time Zone Converter', description: 'Convert time between different time zones.', category: 'Everyday', tags: ['time', 'date', 'conversion', 'timezone'], icon: Globe, path: '/tools/time-zone-converter', component: TimeZoneConverterPage },
+  { name: 'ROT13 Encoder/Decoder', description: 'Encode or decode text using the ROT13 substitution cipher.', category: 'Security', tags: ['cipher', 'encoding', 'text', 'rot13'], icon: RotateCcw, path: '/tools/rot13-encoder', component: Rot13Page },
+  { name: 'Image Metadata Viewer', description: 'Extract and view EXIF metadata from images.', category: 'Security', tags: ['image', 'metadata', 'privacy', 'exif'], icon: FileSearch2, path: '/tools/image-metadata-viewer', component: ImageMetadataViewerPage },
 ];
