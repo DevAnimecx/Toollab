@@ -3,7 +3,7 @@ import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { formatInTimeZone, zonedTimeToUtc } from 'date-fns-tz';
+import * as dateFnsTz from 'date-fns-tz';
 
 const timeZones = Intl.supportedValuesOf('timeZone');
 
@@ -15,8 +15,8 @@ const TimeZoneConverterPage = () => {
 
   const convertedTime = useMemo(() => {
     try {
-      const utcDate = zonedTimeToUtc(dateTime, fromTz);
-      return formatInTimeZone(utcDate, toTz, "yyyy-MM-dd'T'HH:mm");
+      const utcDate = dateFnsTz.zonedTimeToUtc(dateTime, fromTz);
+      return dateFnsTz.formatInTimeZone(utcDate, toTz, "yyyy-MM-dd'T'HH:mm");
     } catch {
       return 'Invalid Date';
     }
