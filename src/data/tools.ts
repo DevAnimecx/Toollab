@@ -3,7 +3,8 @@ import {
   CaseSensitive, Rows, Image, FileText, Braces, Code, QrCode, Ruler, Lock, Fingerprint,
   Palette, Link2, ShieldCheck, Type, Hash, LucideIcon, GitCompareArrows, Shuffle, FileImage,
   FilePlus2, FileJson2, FileCode2, Pipette, CalendarDays, KeyRound, FileLock2,
-  Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2
+  Combine, BarChart, FileScissor, FileXml, Table2, Users, Globe, RotateCcw, FileSearch2,
+  Columns, Key, Highlighter, Scale, Eraser
 } from 'lucide-react';
 
 export interface Tool {
@@ -54,6 +55,12 @@ const RandomNameGeneratorPage = React.lazy(() => import('@/pages/tools/RandomNam
 const TimeZoneConverterPage = React.lazy(() => import('@/pages/tools/TimeZoneConverterPage'));
 const Rot13Page = React.lazy(() => import('@/pages/tools/Rot13Page'));
 const ImageMetadataViewerPage = React.lazy(() => import('@/pages/tools/ImageMetadataViewerPage'));
+const TextColumnSplitterPage = React.lazy(() => import('@/pages/tools/TextColumnSplitterPage'));
+const KeywordExtractorPage = React.lazy(() => import('@/pages/tools/KeywordExtractorPage'));
+const CodeSyntaxHighlighterPage = React.lazy(() => import('@/pages/tools/CodeSyntaxHighlighterPage'));
+const RandomNumberGeneratorPage = React.lazy(() => import('@/pages/tools/RandomNumberGeneratorPage'));
+const BmiCalculatorPage = React.lazy(() => import('@/pages/tools/BmiCalculatorPage'));
+const TextRedactorPage = React.lazy(() => import('@/pages/tools/TextRedactorPage'));
 
 
 export const tools: Tool[] = [
@@ -91,4 +98,12 @@ export const tools: Tool[] = [
   { name: 'Time Zone Converter', description: 'Convert time between different time zones.', category: 'Everyday', tags: ['time', 'date', 'conversion', 'timezone'], icon: Globe, path: '/tools/time-zone-converter', component: TimeZoneConverterPage },
   { name: 'ROT13 Encoder/Decoder', description: 'Encode or decode text using the ROT13 substitution cipher.', category: 'Security', tags: ['cipher', 'encoding', 'text', 'rot13'], icon: RotateCcw, path: '/tools/rot13-encoder', component: Rot13Page },
   { name: 'Image Metadata Viewer', description: 'Extract and view EXIF metadata from images.', category: 'Security', tags: ['image', 'metadata', 'privacy', 'exif'], icon: FileSearch2, path: '/tools/image-metadata-viewer', component: ImageMetadataViewerPage },
+
+  // Batch 4
+  { name: 'Text Column Splitter', description: 'Split text into multiple columns based on a delimiter.', category: 'Text', tags: ['text', 'formatting', 'utility', 'columns'], icon: Columns, path: '/tools/text-column-splitter', component: TextColumnSplitterPage },
+  { name: 'Keyword Extractor', description: 'Extract the most common keywords from text.', category: 'Text', tags: ['text', 'seo', 'analysis', 'keywords'], icon: Key, path: '/tools/keyword-extractor', component: KeywordExtractorPage },
+  { name: 'Code Syntax Highlighter', description: 'Apply syntax highlighting to code snippets.', category: 'Coding', tags: ['coding', 'syntax', 'formatting', 'dev'], icon: Highlighter, path: '/tools/code-syntax-highlighter', component: CodeSyntaxHighlighterPage },
+  { name: 'Random Number Generator', description: 'Generate random numbers within a specified range.', category: 'Everyday', tags: ['random', 'utility', 'math', 'number'], icon: Hash, path: '/tools/random-number-generator', component: RandomNumberGeneratorPage },
+  { name: 'BMI Calculator', description: 'Calculate Body Mass Index (BMI) using metric or imperial units.', category: 'Everyday', tags: ['health', 'fitness', 'calculation', 'bmi'], icon: Scale, path: '/tools/bmi-calculator', component: BmiCalculatorPage },
+  { name: 'Text Redactor', description: 'Black out or blur sensitive words and phrases in text.', category: 'Security', tags: ['privacy', 'text', 'editing', 'redact'], icon: Eraser, path: '/tools/text-redactor', component: TextRedactorPage },
 ];
