@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { FontProvider } from "@/components/FontProvider";
 import { FavoritesProvider } from "@/context/FavoritesContext";
+import { AuthProvider } from "@/context/AuthContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HomePage from "./pages/HomePage";
@@ -16,6 +17,8 @@ import ContactPage from "./pages/ContactPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import DisclaimerPage from "./pages/DisclaimerPage";
+import StatusPage from "./pages/StatusPage";
+import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
 import NotFound from "./pages/NotFound";
 import { tools } from "./data/tools";
 import Loader from "./components/Loader";
@@ -59,32 +62,36 @@ const App = () => {
       <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
         <FontProvider>
           <FavoritesProvider>
-            <TooltipProvider>
-              <Toaster />
-              <Sonner />
-              <GlassBackground />
-              {isLoading && <Loader />}
-              <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-                <BrowserRouter>
-                  <Routes>
-                    <Route element={<AppLayout />}>
-                      <Route path="/" element={<HomePage />} />
-                      <Route path="/tools" element={<ToolsPage />} />
-                      <Route path="/about" element={<AboutPage />} />
-                      <Route path="/contact" element={<ContactPage />} />
-                      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                      <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-                      <Route path="/disclaimer" element={<DisclaimerPage />} />
-                      
-                      {tools.map(tool => (
-                        <Route key={tool.path} path={tool.path} element={<tool.component />} />
-                      ))}
-                    </Route>
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
-                </BrowserRouter>
-              </div>
-            </TooltipProvider>
+            <AuthProvider>
+              <TooltipProvider>
+                <Toaster />
+                <Sonner />
+                <GlassBackground />
+                {isLoading && <Loader />}
+                <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+                  <BrowserRouter>
+                    <Routes>
+                      <Route element={<AppLayout />}>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/tools" element={<ToolsPage />} />
+                        <Route path="/about" element={<AboutPage />} />
+                        <Route path="/contact" element={<ContactPage />} />
+                        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                        <Route path="/disclaimer" element={<DisclaimerPage />} />
+                        <Route path="/status" element={<StatusPage />} />
+                        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                        
+                        {tools.map(tool => (
+                          <Route key={tool.path} path={tool.path} element={<tool.component />} />
+                        ))}
+                      </Route>
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </BrowserRouter>
+                </div>
+              </TooltipProvider>
+            </AuthProvider>
           </FavoritesProvider>
         </FontProvider>
       </ThemeProvider>
