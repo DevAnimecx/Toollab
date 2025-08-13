@@ -1,34 +1,16 @@
 import ToolCard from "@/components/ToolCard";
 import { Button } from "@/components/ui/button";
-import { Code, Image, Type, Hash } from "lucide-react";
+import { tools } from "@/data/tools";
 import { Link } from "react-router-dom";
 
-const featuredTools = [
-  {
-    name: "JSON Formatter",
-    description: "Beautify and validate your JSON data.",
-    href: "/tools/json-formatter",
-    icon: <Code className="h-8 w-8" />,
-  },
-  {
-    name: "Image Converter",
-    description: "Convert images between PNG, JPG, WEBP.",
-    href: "/tools/image-converter",
-    icon: <Image className="h-8 w-8" />,
-  },
-  {
-    name: "Lorem Ipsum Generator",
-    description: "Generate placeholder text for your designs.",
-    href: "/tools/lorem-ipsum",
-    icon: <Type className="h-8 w-8" />,
-  },
-  {
-    name: "Hash Generator",
-    description: "Create MD5, SHA-1, and SHA-256 hashes.",
-    href: "/tools/hash-generator",
-    icon: <Hash className="h-8 w-8" />,
-  },
+const featuredToolPaths = [
+  "/tools/json-formatter",
+  "/tools/image-to-base64",
+  "/tools/password-generator",
+  "/tools/qr-code-generator",
 ];
+
+const featuredTools = tools.filter(tool => featuredToolPaths.includes(tool.path));
 
 const HomePage = () => {
   return (
@@ -45,15 +27,11 @@ const HomePage = () => {
             <Link to="/tools">Browse All Tools</Link>
           </Button>
           <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2">
-            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
-              <Link to="/tools/json-formatter">JSON Formatter</Link>
-            </Button>
-            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
-              <Link to="/tools/image-converter">Image Converter</Link>
-            </Button>
-            <Button asChild variant="link" className="text-muted-foreground hover:text-primary">
-              <Link to="/tools/hash-generator">Hash Generator</Link>
-            </Button>
+            {featuredTools.slice(0, 3).map(tool => (
+              <Button asChild variant="link" className="text-muted-foreground hover:text-primary" key={tool.path}>
+                <Link to={tool.path}>{tool.name}</Link>
+              </Button>
+            ))}
           </div>
         </div>
       </section>
@@ -62,7 +40,13 @@ const HomePage = () => {
         <h2 className="text-3xl font-bold text-center mb-10">Most Popular Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {featuredTools.map((tool) => (
-            <ToolCard key={tool.name} {...tool} />
+            <ToolCard 
+              key={tool.name} 
+              name={tool.name}
+              description={tool.description}
+              href={tool.path}
+              icon={<tool.icon className="h-8 w-8" />}
+            />
           ))}
         </div>
       </section>

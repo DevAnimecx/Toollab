@@ -1,22 +1,21 @@
 import ToolCard from "@/components/ToolCard";
-import { Code, Image, Type, Hash, Palette, Link2, ShieldCheck, FileText } from "lucide-react";
-
-const allTools = [
-  { name: "JSON Formatter", description: "Beautify and validate JSON.", href: "/tools/json-formatter", icon: <Code className="h-8 w-8" /> },
-  { name: "Image Converter", description: "Convert image formats.", href: "/tools/image-converter", icon: <Image className="h-8 w-8" /> },
-  { name: "Lorem Ipsum Generator", description: "Generate placeholder text.", href: "/tools/lorem-ipsum", icon: <Type className="h-8 w-8" /> },
-  { name: "Hash Generator", description: "MD5, SHA-1, SHA-256 hashes.", href: "/tools/hash-generator", icon: <Hash className="h-8 w-8" /> },
-  { name: "Color Picker", description: "Pick colors from a palette.", href: "/tools/color-picker", icon: <Palette className="h-8 w-8" /> },
-  { name: "URL Encoder/Decoder", description: "Encode or decode URLs.", href: "/tools/url-encoder", icon: <Link2 className="h-8 w-8" /> },
-  { name: "Password Generator", description: "Create strong passwords.", href: "/tools/password-generator", icon: <ShieldCheck className="h-8 w-8" /> },
-  { name: "Base64 Encoder/Decoder", description: "Encode/decode Base64.", href: "/tools/base64", icon: <FileText className="h-8 w-8" /> },
-  { name: "Text to Slug", description: "Convert text to URL slug.", href: "/tools/text-to-slug", icon: <Type className="h-8 w-8" /> },
-  { name: "CSS Minifier", description: "Minify CSS code.", href: "/tools/css-minifier", icon: <Code className="h-8 w-8" /> },
-  { name: "Image Resizer", description: "Resize images easily.", href: "/tools/image-resizer", icon: <Image className="h-8 w-8" /> },
-  { name: "Unix Timestamp Converter", description: "Convert timestamps.", href: "/tools/unix-timestamp", icon: <Hash className="h-8 w-8" /> },
-];
+import { tools, categories } from "@/data/tools";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { Search } from "lucide-react";
 
 const ToolsPage = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+
+  const filteredTools = tools.filter(tool => {
+    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          tool.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+    const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div className="container mx-auto px-4 py-12">
       <section className="text-center py-12">
@@ -24,16 +23,47 @@ const ToolsPage = () => {
           All Tools
         </h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Explore our full suite of 70+ client-side tools. Fast, free, and secure.
+          Explore our full suite of client-side tools. Fast, free, and secure.
         </p>
       </section>
 
-      <section>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {allTools.map((tool) => (
-            <ToolCard key={tool.name} {...tool} />
+      <div className="sticky top-16 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-40 py-4 mb-8">
+        <div className="relative max-w-xl mx-auto mb-6">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Input 
+            type="search" 
+            placeholder="Search for a tool by name or tag..." 
+            className="pl-10 h-12 text-lg"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+        <div className="flex justify-center flex-wrap gap-2">
+          <button onClick={() => setSelectedCategory('All')} className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === 'All' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}>All</button>
+          {Object.entries(categories).map(([name, {color}]) => (
+            <button key={name} onClick={() => setSelectedCategory(name)} className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === name ? color.replace('bg-opacity-10', '') : 'bg-secondary text-secondary-foreground'}`}>
+              {name}
+            </button>
           ))}
         </div>
+      </div>
+
+      <section>
+        {filteredTools.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {filteredTools.map((tool) => (
+              <ToolCard 
+                key={tool.name} 
+                name={tool.name}
+                description={tool.description}
+                href={tool.path}
+                icon={<tool.icon className="h-8 w-8" />}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-muted-foreground">No tools found. Try a different search.</p>
+        )}
       </section>
     </div>
   );
