@@ -20,11 +20,17 @@ export function FontToggle() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setFont('poppins')}>
+          Poppins
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setFont('default')}>
-          Default
+          Inter
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setFont('elegant')}>
-          Elegant
+          Playfair
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setFont('mono')}>
+          Mono
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

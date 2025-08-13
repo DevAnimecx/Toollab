@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Font = 'default' | 'elegant';
+type Font = 'default' | 'elegant' | 'poppins' | 'mono';
 
 type FontProviderState = {
   font: Font;
@@ -11,7 +11,7 @@ const FontProviderContext = createContext<FontProviderState | undefined>(undefin
 
 export function FontProvider({
   children,
-  defaultFont = 'default',
+  defaultFont = 'poppins',
   storageKey = 'toollab-font',
 }: {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export function FontProvider({
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove('font-default', 'font-elegant');
+    root.classList.remove('font-default', 'font-elegant', 'font-poppins', 'font-mono');
     root.classList.add(`font-${font}`);
     localStorage.setItem(storageKey, font);
   }, [font, storageKey]);

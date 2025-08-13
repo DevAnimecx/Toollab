@@ -34,9 +34,10 @@
 
     --radius: 0.75rem;
 
-    --font-sans: "Inter", sans-serif;
-    --font-heading: "Space Grotesk", sans-serif;
-    --font-body: "Manrope", sans-serif;
+    /* Default fonts are Poppins */
+    --font-sans: "Poppins", sans-serif;
+    --font-heading: "Poppins", sans-serif;
+    --font-body: "Poppins", sans-serif;
   }
 
   .light {
@@ -60,6 +61,31 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 222 47% 11%;
+  }
+
+  /* Font theme classes */
+  .font-default {
+    --font-sans: "Inter", sans-serif;
+    --font-heading: "Space Grotesk", sans-serif;
+    --font-body: "Manrope", sans-serif;
+  }
+
+  .font-elegant {
+    --font-sans: "Manrope", sans-serif;
+    --font-heading: "Playfair Display", serif;
+    --font-body: "Manrope", sans-serif;
+  }
+
+  .font-poppins {
+    --font-sans: "Poppins", sans-serif;
+    --font-heading: "Poppins", sans-serif;
+    --font-body: "Poppins", sans-serif;
+  }
+
+  .font-mono {
+    --font-sans: "Roboto Mono", monospace;
+    --font-heading: "Roboto Mono", monospace;
+    --font-body: "Roboto Mono", monospace;
   }
 }
 
