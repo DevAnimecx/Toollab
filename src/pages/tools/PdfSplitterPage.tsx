@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { UploadCloud } from 'lucide-react';
 import { showLoading, showError, showSuccess, dismissToast } from '@/utils/toast';
 import * as pdfjsLib from 'pdfjs-dist';
+import type { RenderParameters } from 'pdfjs-dist/types/src/display/api';
 import jsPDF from 'jspdf';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;

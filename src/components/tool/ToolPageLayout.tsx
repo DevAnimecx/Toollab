@@ -44,13 +44,8 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {relatedTools.map((relatedTool) => (
               <ToolCard
-                key={relatedTool.name}
-                name={relatedTool.name}
-                description={relatedTool.description}
-                href={relatedTool.path}
-                icon={<relatedTool.icon className="h-8 w-8" />}
-                accentColor={relatedTool.accentColor}
-                category={relatedTool.category}
+                key={relatedTool.path}
+                tool={relatedTool}
               />
             ))}
           </div>

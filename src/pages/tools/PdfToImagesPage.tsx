@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { UploadCloud } from 'lucide-react';
 import { showLoading, showError, dismissToast } from '@/utils/toast';
 import * as pdfjsLib from 'pdfjs-dist';
+import type { PDFPageProxy, RenderParameters } from 'pdfjs-dist/types/src/display/api';
 
 // Set worker source
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
@@ -29,7 +30,7 @@ const PdfToImagesPage = () => {
       const imageUrls: string[] = [];
 
       for (let i = 1; i <= numPages; i++) {
-        const page = await pdf.getPage(i);
+        const page: PDFPageProxy = await pdf.getPage(i);
         const viewport = page.getViewport({ scale: 1.5 });
         const canvas = document.createElement('canvas');
         const context = canvas.getContext('2d');

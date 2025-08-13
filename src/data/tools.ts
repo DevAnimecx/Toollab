@@ -17,7 +17,7 @@ export interface Tool {
   path: string;
   component: React.ComponentType;
   accentColor: string;
-  gradient: [string, string];
+  gradient: readonly [string, string];
   popularity?: 'new' | 'hot' | 'popular';
 }
 
