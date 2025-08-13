@@ -1,6 +1,6 @@
 import { useAuth } from '@/context/AuthContext';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 const AdminDashboardPage = () => {
@@ -29,9 +29,14 @@ const AdminDashboardPage = () => {
           <h1 className="text-4xl font-bold font-heading">Admin Dashboard</h1>
           <Button onClick={handleLogout} variant="destructive">Logout</Button>
         </div>
-        <p className="text-muted-foreground">
-          Welcome to the Admin Panel. Full tool management features will be built here in the next phase.
-        </p>
+        <div className="space-y-4">
+          <p className="text-muted-foreground">
+            Welcome to the Admin Panel. Use the links below to manage the site.
+          </p>
+          <Button asChild>
+            <Link to="/admin/ads">Manage Cinematic Ads</Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

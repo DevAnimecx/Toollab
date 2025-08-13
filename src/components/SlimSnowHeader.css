@@ -1,0 +1,40 @@
+.slim-snow-header {
+  height: 40px;
+  width: 100%;
+  background: rgba(11, 30, 53, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@keyframes snow {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 500px 1000px, 400px 400px, 300px 300px;
+  }
+}
+
+.snow-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(https://dl.dropbox.com/s/owm86l3t2ar8t50/snow.png), url(https://dl.dropbox.com/s/hmik8s1i4052zzj/snow2.png), url(https://dl.dropbox.com/s/k4fvo9z23eamfgw/snow3.png);
+  animation: snow 20s linear infinite;
+}
+
+.snow-layer.layer2 {
+  animation-duration: 15s;
+  animation-direction: reverse;
+  opacity: 0.6;
+}
+
+.snow-layer.layer3 {
+  animation-duration: 25s;
+  opacity: 0.5;
+}

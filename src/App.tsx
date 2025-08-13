@@ -19,16 +19,19 @@ import TermsOfServicePage from "./pages/TermsOfServicePage";
 import DisclaimerPage from "./pages/DisclaimerPage";
 import StatusPage from "./pages/StatusPage";
 import AdminDashboardPage from "./pages/admin/AdminDashboardPage";
+import AdsManagementPage from "./pages/admin/AdsManagementPage";
 import NotFound from "./pages/NotFound";
 import { tools } from "./data/tools";
 import Loader from "./components/Loader";
 import GlassBackground from "./components/GlassBackground";
 import SkeletonCard from "./components/SkeletonCard";
+import SlimSnowHeader from "./components/SlimSnowHeader";
 
 const queryClient = new QueryClient();
 
 const AppLayout = () => (
   <div className="min-h-screen flex flex-col">
+    <SlimSnowHeader />
     <Header />
     <main className="flex-grow">
       <Suspense fallback={
@@ -79,6 +82,7 @@ const App = () => {
                         <Route path="/disclaimer" element={<DisclaimerPage />} />
                         <Route path="/status" element={<StatusPage />} />
                         <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                        <Route path="/admin/ads" element={<AdsManagementPage />} />
                         
                         {tools.map(tool => (
                           <Route key={tool.path} path={tool.path} element={<tool.component />} />

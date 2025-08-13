@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 import { useFavorites } from "@/context/FavoritesContext";
+import BlackVaultAdBlock from "@/components/BlackVaultAdBlock";
 
 const Hero = () => (
   <section className="text-center py-20 md:py-32">
@@ -89,12 +90,17 @@ const DynamicToolShowcase = () => {
 
 const HomePage = () => {
   return (
-    <div className="container mx-auto px-4">
-      <Hero />
-      <CategoryCarousel />
-      <DynamicToolShowcase />
-      <Stats />
-    </div>
+    <>
+      <div className="container mx-auto px-4">
+        <Hero />
+      </div>
+      <BlackVaultAdBlock />
+      <div className="container mx-auto px-4">
+        <CategoryCarousel />
+        <DynamicToolShowcase />
+        <Stats />
+      </div>
+    </>
   );
 };
 
