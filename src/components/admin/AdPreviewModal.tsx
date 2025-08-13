@@ -19,12 +19,11 @@ export const AdPreviewModal = ({ ad, open, onOpenChange }: AdPreviewModalProps) 
         </DialogHeader>
         <div className="relative w-full h-[250px] md:h-[300px] overflow-hidden rounded-lg">
           <div
-            className="absolute inset-0 bg-cover bg-center scale-105"
-            style={{ backgroundImage: `url(${ad.imageUrl})` }}
+            className={`absolute inset-0 scale-105 ${ad.background}`}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+          <div className="absolute inset-0 bg-black/20" />
           
-          <div className="relative z-10 flex flex-col justify-end h-full p-8 text-white">
+          <div className="relative z-10 flex flex-col justify-center items-center h-full p-8 text-white text-center">
             <h2 className="font-heading text-3xl md:text-5xl font-bold text-glow">
               {ad.headline}
             </h2>
