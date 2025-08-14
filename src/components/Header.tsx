@@ -1,11 +1,29 @@
 import { Link } from "react-router-dom";
-import { Menu } from "lucide-react";
+import { Menu, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { FontToggle } from "@/components/FontToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Logo from "./Logo";
-import { SearchBar } from "./SearchBar";
+import { useState } from 'react';
+import { ThemeSelector } from './seasonal/ThemeSelector';
+import { useSeasonalTheme } from '@/context/SeasonalThemeProvider';
+import { IndianFlagIcon } from './seasonal/IndianFlagIcon';
+
+const SettingsToggle = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { theme, isIndependenceDay } = useSeasonalTheme();
+  const isEventActive = theme === 'independence' && isIndependenceDay;
+
+  return (
+    <>
+      <Button variant="outline" size="icon" onClick={() => setIsOpen(true)}>
+        {isEventActive ? <IndianFlagIcon /> : <Settings className="h-[1.2rem] w-[1.2rem]" />}
+        <span className="sr-only">Toggle Theme and Settings</span>
+      </Button>
+      <ThemeSelector open={isOpen} onOpenChange={setIsOpen} />
+    </>
+  );
+};
 
 const Header = () => {
   const navLinks = [
@@ -39,7 +57,7 @@ const Header = () => {
              {/* The search bar will be added to the home page hero */}
           </div>
           <FontToggle />
-          <ThemeToggle />
+          <SettingsToggle />
           
           <div className="md:hidden">
             <Sheet>

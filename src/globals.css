@@ -123,3 +123,37 @@
     text-shadow: 0 0 8px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.2);
   }
 }
+
+/* Independence Day Theme Styles */
+.theme-independence header.sticky {
+  border-image-source: linear-gradient(to right, #FF9933, #FFFFFF, #138808);
+  border-image-slice: 1;
+}
+
+.theme-independence .prose a {
+  position: relative;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+.theme-independence .prose a:hover {
+  color: hsl(var(--primary));
+}
+
+.theme-independence .prose a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, #FF9933, #FFFFFF, #138808);
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.theme-independence .prose a:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}

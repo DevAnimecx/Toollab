@@ -9,6 +9,9 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { FontProvider } from "@/components/FontProvider";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { SeasonalThemeProvider, useSeasonalTheme } from "./context/SeasonalThemeProvider";
+import { IndependenceDayPopup } from "./components/seasonal/IndependenceDayPopup";
+import { IndependenceDayOverlay } from "./components/seasonal/IndependenceDayOverlay";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HomePage from "./pages/HomePage";
@@ -53,58 +56,73 @@ const AppLayout = () => (
   </div>
 );
 
-const App = () => {
+const AppContent = () => {
+  const { isIndependenceDay } = useSeasonalTheme();
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // Match loader animation duration
+    const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
+  return (
+    <>
+      {isIndependenceDay && (
+        <>
+          <IndependenceDayOverlay />
+          <IndependenceDayPopup />
+        </>
+      )}
+      {isLoading && <Loader />}
+      <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<AppLayout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/tools" element={<ToolsPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/disclaimer" element={<DisclaimerPage />} />
+              <Route path="/status" element={<StatusPage />} />
+              <Route path="/changelog" element={<ChangelogPage />} />
+              <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+              <Route path="/admin/ads" element={<AdsManagementPage />} />
+              <Route path="/blog" element={<BlogIndexPage />} />
+              <Route path="/blog/:slug" element={<BlogPostPage />} />
+              
+              {tools.map(tool => (
+                <Route key={tool.path} path={tool.path} element={<tool.component />} />
+              ))}
+            </Route>
+            <Route path="/sitemap.xml" element={<Sitemap />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </>
+  );
+};
+
+const App = () => {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
           <FontProvider>
-            <FavoritesProvider>
-              <AuthProvider>
-                <TooltipProvider>
-                  <Toaster />
-                  <Sonner />
-                  <GlassBackground />
-                  {isLoading && <Loader />}
-                  <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-                    <BrowserRouter>
-                      <Routes>
-                        <Route element={<AppLayout />}>
-                          <Route path="/" element={<HomePage />} />
-                          <Route path="/tools" element={<ToolsPage />} />
-                          <Route path="/about" element={<AboutPage />} />
-                          <Route path="/contact" element={<ContactPage />} />
-                          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-                          <Route path="/disclaimer" element={<DisclaimerPage />} />
-                          <Route path="/status" element={<StatusPage />} />
-                          <Route path="/changelog" element={<ChangelogPage />} />
-                          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-                          <Route path="/admin/ads" element={<AdsManagementPage />} />
-                          <Route path="/blog" element={<BlogIndexPage />} />
-                          <Route path="/blog/:slug" element={<BlogPostPage />} />
-                          
-                          {tools.map(tool => (
-                            <Route key={tool.path} path={tool.path} element={<tool.component />} />
-                          ))}
-                        </Route>
-                        <Route path="/sitemap.xml" element={<Sitemap />} />
-                        <Route path="*" element={<NotFound />} />
-                      </Routes>
-                    </BrowserRouter>
-                  </div>
-                </TooltipProvider>
-              </AuthProvider>
-            </FavoritesProvider>
+            <SeasonalThemeProvider>
+              <FavoritesProvider>
+                <AuthProvider>
+                  <TooltipProvider>
+                    <Toaster />
+                    <Sonner />
+                    <GlassBackground />
+                    <AppContent />
+                  </TooltipProvider>
+                </AuthProvider>
+              </FavoritesProvider>
+            </SeasonalThemeProvider>
           </FontProvider>
         </ThemeProvider>
       </QueryClientProvider>
