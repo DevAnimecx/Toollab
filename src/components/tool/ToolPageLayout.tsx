@@ -45,7 +45,7 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
             <Badge variant="secondary" style={{ color: tool.accentColor, borderColor: `${tool.accentColor}40`, background: `${tool.accentColor}15` }}>
               {tool.category}
             </Badge>
-            <h1 className="mt-4 text-4xl md:text-5xl font-extrabold font-heading text-glow">{tool.name}</h1>
+            <h1 className="mt-4 text-4xl md:text-5xl font-extrabold font-heading">{tool.name}</h1>
             <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
               {tool.description}
             </p>

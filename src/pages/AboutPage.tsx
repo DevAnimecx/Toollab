@@ -1,62 +1,53 @@
-import React from 'react';
-import Logo from '@/components/Logo';
-import Stats from '@/components/Stats';
-import { CheckCircle } from 'lucide-react';
-import Seo from '@/components/Seo';
-import { getOrganizationSchema } from '@/lib/schema';
+import StaticPageLayout from "@/components/StaticPageLayout";
+import Seo from "@/components/Seo";
+import { getOrganizationSchema } from "@/lib/schema";
 
 const AboutPage = () => {
   return (
     <>
       <Seo
-        title="About Toollab"
-        description="Learn about Toollab's mission to provide the best suite of fast, private, and free client-side tools. Discover our commitment to a secure and efficient web experience."
-        keywords="about toollab, our mission, client-side tools, privacy first"
+        title="About Toollab - Your Everyday Internet Toolbox"
+        description="Learn about Toollab, your one-stop platform for over 70+ powerful, free, and easy-to-use online tools designed for daily internet needs."
+        keywords="about toollab, our mission, client-side tools, privacy first, nexobytes, animecx"
         canonicalPath="/about"
         schema={getOrganizationSchema()}
       />
-      <div className="container mx-auto px-4 py-16">
-        <section className="text-center py-16 rounded-2xl bg-secondary/40 border border-white/10">
-          <h1 className="text-5xl font-extrabold font-heading">About Toollab</h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            We're on a mission to build the best suite of client-side tools, focusing on speed, privacy, and elegant design.
-          </p>
-        </section>
+      <StaticPageLayout title="About Toollab">
+        <p className="text-xl text-muted-foreground">
+          Welcome to Toollab — Your Everyday Internet Toolbox
+        </p>
+        <p>
+          Toollab is your one-stop platform for over 70+ powerful, free, and easy-to-use online tools designed for daily internet needs. Whether you need to convert, edit, optimize, analyze, or create — Toollab delivers a fast, premium, and elegant experience without clutter, distractions, or unnecessary complexity.
+        </p>
+        <p>
+          We built Toollab with speed, simplicity, and productivity in mind. Each tool is crafted for instant access, lightweight performance, and a polished UI that makes your workflow seamless and enjoyable.
+        </p>
 
-        <section className="py-20 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-bold">Our Vision</h2>
-            <p className="mt-4 text-muted-foreground">
-              In an era where data privacy is paramount, we saw a need for a tool hub that operates entirely within your browser. Toollab was born from this vision. We believe that you shouldn't have to compromise on security or speed to get your daily tasks done. Whether you're a developer, a designer, a student, or just a curious internet user, Toollab is built for you.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold">Privacy First</h3>
-                <p className="text-sm text-muted-foreground">All our tools are 100% client-side. Your files and data never leave your computer.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold">Blazing Fast</h3>
-                <p className="text-sm text-muted-foreground">Since everything happens in your browser, there are no upload times or server processing delays.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-              <div>
-                <h3 className="font-semibold">Completely Free</h3>
-                <p className="text-sm text-muted-foreground">Access over 70+ tools without any cost, ads, or hidden fees.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <h3 className="mt-8 mb-4 text-2xl font-semibold">Our Vision</h3>
+        <p>
+          Our goal is to create the world’s most complete and refined online toolkit — where users can find, use, and share tools instantly, without installing software or worrying about privacy. Toollab is built for everyone — from students and freelancers to professionals and businesses.
+        </p>
 
-        <Stats />
-      </div>
+        <h3 className="mt-8 mb-4 text-2xl font-semibold">Core Values</h3>
+        <ul className="space-y-3">
+          <li><strong>Premium Experience</strong> – Modern, clean, and classy design for effortless use.</li>
+          <li><strong>Privacy First</strong> – All tools work client-side whenever possible. Your data stays with you.</li>
+          <li><strong>Always Free</strong> – Toollab is free forever, no hidden costs or subscriptions.</li>
+          <li><strong>Speed & Reliability</strong> – Instant tool loading, responsive design, and uptime you can trust.</li>
+        </ul>
+
+        <h3 className="mt-8 mb-4 text-2xl font-semibold">Credits</h3>
+        <ul className="space-y-3">
+          <li><strong>Developer:</strong> Animecx</li>
+          <li><strong>Made By:</strong> NexoBytes Development</li>
+          <li><strong>Powered By:</strong> OpenBytes Technology</li>
+        </ul>
+
+        <h3 className="mt-8 mb-4 text-2xl font-semibold">Special Thanks</h3>
+        <p>
+          We thank our global community of testers, early adopters, and daily users who help us improve Toollab every day.
+        </p>
+      </StaticPageLayout>
     </>
   );
 };
