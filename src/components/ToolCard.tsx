@@ -64,9 +64,9 @@ const ToolCard = ({ tool, animationDelay }: ToolCardProps) => {
   };
 
   return (
-    <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.1} scale={1.02}>
-      <div className="h-full opacity-0 animate-staggered-fade-slide-up" style={style}>
-        <Link to={path} className="group block h-full">
+    <div className="h-full opacity-0 animate-staggered-fade-slide-up" style={style}>
+      <Link to={path} className="group block h-full">
+        <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.1} scale={1.02} className="h-full">
           <div
             className="relative p-6 rounded-2xl h-full overflow-hidden transition-all duration-300 ease-out
                         bg-card/80 backdrop-blur-xl border border-border
@@ -89,9 +89,9 @@ const ToolCard = ({ tool, animationDelay }: ToolCardProps) => {
               </Badge>
             </div>
           </div>
-        </Link>
-      </div>
-    </Tilt>
+        </Tilt>
+      </Link>
+    </div>
   );
 };
 
