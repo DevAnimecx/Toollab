@@ -89,9 +89,7 @@ const HomePage = () => {
         canonicalPath="/"
         schema={schema}
       />
-      <div className="container mx-auto px-4">
-        <Hero />
-      </div>
+      <Hero />
       <BlackVaultAdBlock />
       <div className="container mx-auto px-4">
         <CategoryCarousel />
