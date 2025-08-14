@@ -9,8 +9,9 @@ import { useFavorites } from '@/context/FavoritesContext';
 import { Button } from '@/components/ui/button';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { Skeleton } from '@/components/ui/skeleton';
+import { cn } from '@/lib/utils';
 
-export const ToolsPage = () => {
+const ToolsPage = () => {
   const [view, setView] = useState<'grid'|'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -67,9 +68,9 @@ export const ToolsPage = () => {
                   ? `${filteredTools.length} Tools in '${selectedCategories[0]}'`
                   : `${filteredTools.length} Tools`}
               </h1>
-              {selectedCategories.length > 0 && (
+              {selectedCategories.length > 0 && selectedCategories[0] in categories && (
                 <p className="text-sm text-muted-foreground">
-                  {categories[selectedCategories[0]]?.description}
+                  {categories[selectedCategories[0] as keyof typeof categories].description}
                 </p>
               )}
             </div>
@@ -88,7 +89,7 @@ export const ToolsPage = () => {
             </div>
           </div>
 
-          {selectedCategories.length > 0 && (
+          {(selectedCategories.length > 0 || searchTerm) && (
             <div className="mb-4">
               <Button variant="ghost" size="sm" onClick={clearFilters}>
                 Clear filters
@@ -97,7 +98,7 @@ export const ToolsPage = () => {
           )}
 
           {/* Favorites Section */}
-          {favoriteTools.length > 0 && (
+          {favoriteTools.length > 0 && !searchTerm && selectedCategories.length === 0 && (
             <div className="mb-8">
               <h2 className="text-xl font-semibold mb-4">Your Favorites</h2>
               <div className={cn(
@@ -131,3 +132,5 @@ export const ToolsPage = () => {
     </div>
   );
 };
+
+export default ToolsPage;

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import { useFavorites } from '@/context/FavoritesContext';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 
 export const ToolCard = ({ tool, view = 'grid' }: { tool: Tool; view?: 'grid'|'list' }) => {
   const { isFavorite, toggleFavorite } = useFavorites();

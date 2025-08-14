@@ -22,11 +22,11 @@ export interface Tool {
 }
 
 export const categories = {
-  'Text Utilities': { color: '#4DA8DA', icon: CaseSensitive },
-  'File Tools': { color: '#48E6B0', icon: FileText },
-  'Coding Tools': { color: '#FFB84D', icon: Code },
-  'Everyday Tools': { color: '#FF7F7F', icon: Palette },
-  'Security Tools': { color: '#C77DFF', icon: Lock },
+  'Text Utilities': { color: '#4DA8DA', icon: CaseSensitive, description: 'Tools for text manipulation and analysis.' },
+  'File Tools': { color: '#48E6B0', icon: FileText, description: 'Tools for file conversion and editing.' },
+  'Coding Tools': { color: '#FFB84D', icon: Code, description: 'Tools for developers and programmers.' },
+  'Everyday Tools': { color: '#FF7F7F', icon: Palette, description: 'Tools for everyday tasks and calculations.' },
+  'Security Tools': { color: '#C77DFF', icon: Lock, description: 'Tools for security and privacy.' },
 };
 
 // Lazy load components for better performance
