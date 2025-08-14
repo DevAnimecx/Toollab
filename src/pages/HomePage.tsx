@@ -12,7 +12,7 @@ import { getWebsiteSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Hero = () => (
   <section className="text-center py-20 md:py-32">
-    <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-white to-muted-foreground/80">
+    <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80">
       Toollab – 70+ Free Online Tools for Daily Internet Needs
     </h1>
     <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
@@ -33,9 +33,9 @@ const CategoryCarousel = () => (
       <div className="flex w-max space-x-4 p-4">
         {Object.entries(categories).map(([name, { icon: Icon, color }]) => (
           <Link to="/tools" key={name} className="group">
-            <div className="flex-shrink-0 w-48 h-48 p-6 rounded-2xl flex flex-col items-center justify-center text-center bg-secondary/40 border border-white/10 transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-black/30 group-hover:border-white/20" style={{ '--accent-color': color } as React.CSSProperties}>
+            <div className="flex-shrink-0 w-48 h-48 p-6 rounded-2xl flex flex-col items-center justify-center text-center bg-secondary border border-border transition-all duration-300 ease-out group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-black/30 group-hover:border-white/20" style={{ '--accent-color': color } as React.CSSProperties}>
               <Icon className="h-10 w-10 text-[var(--accent-color)] transition-transform duration-300 group-hover:scale-110" />
-              <h3 className="mt-4 font-bold text-white">{name}</h3>
+              <h3 className="mt-4 font-bold text-foreground">{name}</h3>
             </div>
           </Link>
         ))}

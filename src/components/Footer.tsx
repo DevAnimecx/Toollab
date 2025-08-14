@@ -30,7 +30,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="border-t border-white/10">
+    <footer className="border-t border-border">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1">
@@ -41,11 +41,11 @@ const Footer = () => {
           </div>
           {Object.entries(links).map(([title, items]) => (
             <div key={title}>
-              <h4 className="font-bold font-heading text-white">{title}</h4>
+              <h4 className="font-bold font-heading text-foreground">{title}</h4>
               <ul className="mt-4 space-y-2">
                 {items.map((item) => (
                   <li key={item.name}>
-                    <Link to={item.href} className="text-sm text-muted-foreground hover:text-white transition-colors">
+                    <Link to={item.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                       {item.name}
                     </Link>
                   </li>
@@ -54,11 +54,11 @@ const Footer = () => {
             </div>
           ))}
         </div>
-        <div className="mt-12 border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
+        <div className="mt-12 border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Toollab. All Rights Reserved.</p>
           <div className="flex items-center space-x-4 mt-4 sm:mt-0">
             {socialLinks.map(link => (
-              <a key={link.name} href={link.href} className="text-muted-foreground hover:text-white transition-colors">
+              <a key={link.name} href={link.href} className="text-muted-foreground hover:text-foreground transition-colors">
                 {link.icon}
                 <span className="sr-only">{link.name}</span>
               </a>

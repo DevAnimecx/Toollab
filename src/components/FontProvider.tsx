@@ -11,7 +11,7 @@ const FontProviderContext = createContext<FontProviderState | undefined>(undefin
 
 export function FontProvider({
   children,
-  defaultFont = 'poppins',
+  defaultFont = 'elegant',
   storageKey = 'toollab-font',
 }: {
   children: React.ReactNode;
