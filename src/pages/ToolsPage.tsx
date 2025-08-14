@@ -42,7 +42,7 @@ const ToolsPage = () => {
           </p>
         </section>
 
-        <div className="sticky top-16 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-40 py-4 mb-8">
+        <div className="hidden md:block sticky top-16 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-40 py-4 mb-8">
           <div className="relative max-w-xl mx-auto mb-6">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input 
@@ -65,7 +65,7 @@ const ToolsPage = () => {
 
         <section>
           {filteredTools.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
               {filteredTools.map((tool) => (
                 <ToolCard 
                   key={tool.path} 

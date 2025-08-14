@@ -11,14 +11,14 @@ import Seo from "@/components/Seo";
 import { getWebsiteSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Hero = () => (
-  <section className="text-center py-20 md:py-32">
-    <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80">
-      Toollab – 70+ Free Online Tools for Daily Internet Needs
+  <section className="text-center py-16 md:py-32">
+    <h1 className="text-4xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80">
+      Toollab – 70+ Free Online Tools
     </h1>
     <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
       Toollab offers fast, secure, and free client-side tools. No uploads, no waiting. Just instant results.
     </p>
-    <div className="mt-8 flex justify-center">
+    <div className="mt-8 hidden md:flex justify-center">
       <div className="w-full max-w-lg">
         <SearchBar />
       </div>
@@ -28,7 +28,7 @@ const Hero = () => (
 
 const CategoryCarousel = () => (
   <section className="py-16">
-    <h2 className="text-4xl font-bold text-center mb-12">Explore by Category</h2>
+    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Explore by Category</h2>
     <ScrollArea className="w-full whitespace-nowrap rounded-md">
       <div className="flex w-max space-x-4 p-4">
         {Object.entries(categories).map(([name, { icon: Icon, color }]) => (
@@ -57,7 +57,7 @@ const DynamicToolShowcase = () => {
       return <p className="text-center text-muted-foreground mt-8">No tools in this category yet. Mark some as favorites!</p>
     }
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-8">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 mt-8">
         {toolList.map((tool, index) => (
           <ToolCard 
             key={tool.path} 
@@ -71,7 +71,7 @@ const DynamicToolShowcase = () => {
 
   return (
     <section id="tool-showcase" className="py-16">
-      <h2 className="text-4xl font-bold text-center mb-12">Discover Our Tools</h2>
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Discover Our Tools</h2>
       <Tabs defaultValue="all" className="w-full">
         <TabsList className="grid w-full max-w-lg mx-auto grid-cols-5">
           <TabsTrigger value="all">All</TabsTrigger>

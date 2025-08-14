@@ -34,10 +34,13 @@ import BlogIndexPage from "./pages/BlogIndexPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import ChangelogPage from "./pages/ChangelogPage";
 import UpcomingToolsPage from "./pages/UpcomingToolsPage";
+import { useIsMobile } from "./hooks/use-mobile";
+import MobileLayout from "./components/mobile/MobileLayout";
+import FavoritesPage from "./pages/FavoritesPage";
 
 const queryClient = new QueryClient();
 
-const AppLayout = () => (
+const DesktopLayout = () => (
   <div className="min-h-screen flex flex-col">
     <SlimSnowHeader />
     <Header />
@@ -59,11 +62,18 @@ const AppLayout = () => (
 const AppContent = () => {
   const { isIndependenceDay } = useSeasonalTheme();
   const [isLoading, setIsLoading] = useState(true);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  if (isLoading || isMobile === undefined) {
+    return <Loader />;
+  }
+
+  const Layout = isMobile ? MobileLayout : DesktopLayout;
 
   return (
     <>
@@ -73,13 +83,13 @@ const AppContent = () => {
           <IndependenceDayPopup />
         </>
       )}
-      {isLoading && <Loader />}
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         <BrowserRouter>
           <Routes>
-            <Route element={<AppLayout />}>
+            <Route element={<Layout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/tools" element={<ToolsPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
               <Route path="/upcoming-tools" element={<UpcomingToolsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
