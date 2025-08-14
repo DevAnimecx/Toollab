@@ -28,6 +28,8 @@ import GlassBackground from "./components/GlassBackground";
 import SkeletonCard from "./components/SkeletonCard";
 import SlimSnowHeader from "./components/SlimSnowHeader";
 import Sitemap from "./pages/Sitemap";
+import BlogIndexPage from "./pages/BlogIndexPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +88,8 @@ const App = () => {
                           <Route path="/status" element={<StatusPage />} />
                           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
                           <Route path="/admin/ads" element={<AdsManagementPage />} />
+                          <Route path="/blog" element={<BlogIndexPage />} />
+                          <Route path="/blog/:slug" element={<BlogPostPage />} />
                           
                           {tools.map(tool => (
                             <Route key={tool.path} path={tool.path} element={<tool.component />} />

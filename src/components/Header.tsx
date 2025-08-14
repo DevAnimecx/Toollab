@@ -10,6 +10,7 @@ import { SearchBar } from "./SearchBar";
 const Header = () => {
   const navLinks = [
     { name: "All Tools", href: "/tools" },
+    { name: "Blog", href: "/blog" },
     { name: "Status", href: "/status" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
