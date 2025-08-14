@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { ads as initialAds, Ad } from '@/data/ads';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ShieldCheck, X } from 'lucide-react';
+import { Dialog, DialogTrigger } from '@/components/ui/dialog';
+import { WhyThisAdModal } from './WhyThisAdModal';
 
 const BlackVaultAdBlock = () => {
   const [ads] = useState<Ad[]>(() => initialAds.filter(ad => ad.status === 'active'));
   const [currentAdIndex, setCurrentAdIndex] = useState(0);
   const [isClosed, setIsClosed] = useState(false);
+  const [isWhyAdOpen, setIsWhyAdOpen] = useState(false);
 
   useEffect(() => {
     if (ads.length < 2 || isClosed) return;
@@ -27,11 +30,16 @@ const BlackVaultAdBlock = () => {
     return (
       <section className="py-12">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="flex items-center justify-center gap-4 p-3 rounded-lg bg-secondary/40 border border-white/10 text-sm">
-            <ShieldCheck className="h-5 w-5 text-primary" />
-            <span className="font-semibold text-muted-foreground">BlackVault Ads</span>
-            <a href="#" className="text-primary hover:underline text-xs">Why this ad?</a>
-          </div>
+          <Dialog open={isWhyAdOpen} onOpenChange={setIsWhyAdOpen}>
+            <div className="flex items-center justify-center gap-4 p-3 rounded-lg bg-secondary/40 border border-white/10 text-sm">
+              <ShieldCheck className="h-5 w-5 text-primary" />
+              <span className="font-semibold text-muted-foreground">BlackVault Ads</span>
+              <DialogTrigger asChild>
+                <button className="text-primary hover:underline text-xs">Why this ad?</button>
+              </DialogTrigger>
+            </div>
+            <WhyThisAdModal />
+          </Dialog>
         </div>
       </section>
     );

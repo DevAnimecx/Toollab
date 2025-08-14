@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, Di
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { AdPreviewModal } from '@/components/admin/AdPreviewModal';
-import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, closestCenter, PointerSensor, useSensor, useSensors, DragEndEvent } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 
@@ -89,9 +89,10 @@ const AdsManagementPage = () => {
 
   const handleDeleteAd = (id: string) => setAds(ads.filter(ad => ad.id !== id));
   const toggleStatus = (id: string) => setAds(ads.map(ad => ad.id === id ? { ...ad, status: ad.status === 'active' ? 'inactive' : 'active' } : ad));
-  const handleDragEnd = (event: any) => {
+  
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
-    if (active.id !== over.id) {
+    if (over && active.id !== over.id) {
       setAds((items) => {
         const oldIndex = items.findIndex(item => item.id === active.id);
         const newIndex = items.findIndex(item => item.id === over.id);
