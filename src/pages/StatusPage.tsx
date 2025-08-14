@@ -3,9 +3,10 @@ import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Lock, Play, Check, RefreshCw, Loader2 } from 'lucide-react';
+import { Lock, Play, RefreshCw, Loader2 } from 'lucide-react';
 import { AdminLoginModal } from '@/components/status/AdminLoginModal';
 import { AnimatePresence, motion } from 'framer-motion';
+import Seo from '@/components/Seo';
 
 type ToolStatus = 'Working' | 'Not Working' | 'Pending' | 'Checking';
 
@@ -24,7 +25,7 @@ const StatusIndicator = ({ status }: { status: ToolStatus }) => {
   const current = config[status];
   return (
     <div className="flex items-center gap-2">
-      <span className={`h-2 w-2 rounded-full ${current.color} animate-pulse`} />
+      <span className={`h-2 w-2 rounded-full ${current.color} ${status === 'Checking' || status === 'Working' ? 'animate-pulse' : ''}`} />
       <span className="text-sm">{current.text}</span>
     </div>
   );
@@ -88,6 +89,12 @@ const StatusPage = () => {
 
   return (
     <>
+      <Seo
+        title="System Status"
+        description="Check the live operational status of all tools on the Toollab platform. See real-time availability and performance metrics for our entire suite of utilities."
+        keywords="status, system status, uptime, tool status, service availability"
+        canonicalPath="/status"
+      />
       <AdminLoginModal open={isLoginOpen} onOpenChange={setIsLoginOpen} />
       <div className="container mx-auto px-4 py-12">
         <header className="flex justify-between items-center mb-8">

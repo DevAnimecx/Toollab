@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -26,6 +27,7 @@ import Loader from "./components/Loader";
 import GlassBackground from "./components/GlassBackground";
 import SkeletonCard from "./components/SkeletonCard";
 import SlimSnowHeader from "./components/SlimSnowHeader";
+import Sitemap from "./pages/Sitemap";
 
 const queryClient = new QueryClient();
 
@@ -59,45 +61,48 @@ const App = () => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
-        <FontProvider>
-          <FavoritesProvider>
-            <AuthProvider>
-              <TooltipProvider>
-                <Toaster />
-                <Sonner />
-                <GlassBackground />
-                {isLoading && <Loader />}
-                <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route element={<AppLayout />}>
-                        <Route path="/" element={<HomePage />} />
-                        <Route path="/tools" element={<ToolsPage />} />
-                        <Route path="/about" element={<AboutPage />} />
-                        <Route path="/contact" element={<ContactPage />} />
-                        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-                        <Route path="/terms-of-service" element={<TermsOfServicePage />} />
-                        <Route path="/disclaimer" element={<DisclaimerPage />} />
-                        <Route path="/status" element={<StatusPage />} />
-                        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
-                        <Route path="/admin/ads" element={<AdsManagementPage />} />
-                        
-                        {tools.map(tool => (
-                          <Route key={tool.path} path={tool.path} element={<tool.component />} />
-                        ))}
-                      </Route>
-                      <Route path="*" element={<NotFound />} />
-                    </Routes>
-                  </BrowserRouter>
-                </div>
-              </TooltipProvider>
-            </AuthProvider>
-          </FavoritesProvider>
-        </FontProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider defaultTheme="dark" storageKey="toollab-theme">
+          <FontProvider>
+            <FavoritesProvider>
+              <AuthProvider>
+                <TooltipProvider>
+                  <Toaster />
+                  <Sonner />
+                  <GlassBackground />
+                  {isLoading && <Loader />}
+                  <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+                    <BrowserRouter>
+                      <Routes>
+                        <Route element={<AppLayout />}>
+                          <Route path="/" element={<HomePage />} />
+                          <Route path="/tools" element={<ToolsPage />} />
+                          <Route path="/about" element={<AboutPage />} />
+                          <Route path="/contact" element={<ContactPage />} />
+                          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+                          <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+                          <Route path="/disclaimer" element={<DisclaimerPage />} />
+                          <Route path="/status" element={<StatusPage />} />
+                          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+                          <Route path="/admin/ads" element={<AdsManagementPage />} />
+                          
+                          {tools.map(tool => (
+                            <Route key={tool.path} path={tool.path} element={<tool.component />} />
+                          ))}
+                        </Route>
+                        <Route path="/sitemap.xml" element={<Sitemap />} />
+                        <Route path="*" element={<NotFound />} />
+                      </Routes>
+                    </BrowserRouter>
+                  </div>
+                </TooltipProvider>
+              </AuthProvider>
+            </FavoritesProvider>
+          </FontProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 };
 

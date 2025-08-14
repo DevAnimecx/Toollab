@@ -8,7 +8,7 @@ interface LogoProps {
 const Logo = ({ className }: LogoProps) => {
   return (
     <div className={cn("text-[rgba(255,255,255,0.95)] text-2xl tracking-wider relative font-heading", className)}>
-      <span className="font-extrabold">TOOLLAB</span>
+      <span className="font-extrabold">Toollab</span>
       <div className="absolute bottom-[-4px] left-0 h-[2px] w-full bg-primary/80 animate-slide-in-underline" />
     </div>
   );

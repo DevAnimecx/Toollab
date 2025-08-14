@@ -7,11 +7,13 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
 import { useFavorites } from "@/context/FavoritesContext";
 import BlackVaultAdBlock from "@/components/BlackVaultAdBlock";
+import Seo from "@/components/Seo";
+import { getWebsiteSchema, getOrganizationSchema } from "@/lib/schema";
 
 const Hero = () => (
   <section className="text-center py-20 md:py-32">
     <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-white to-muted-foreground/80">
-      All Your Tools. One Elegant Hub.
+      Toollab – 70+ Free Online Tools for Daily Internet Needs
     </h1>
     <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
       Toollab offers fast, secure, and free client-side tools. No uploads, no waiting. Just instant results.
@@ -89,8 +91,20 @@ const DynamicToolShowcase = () => {
 };
 
 const HomePage = () => {
+  const schema = {
+    ...getWebsiteSchema(),
+    ...getOrganizationSchema(),
+  };
+
   return (
     <>
+      <Seo
+        title="70+ Free Client-Side Online Tools"
+        description="Toollab offers a comprehensive suite of 70+ free, fast, and secure client-side tools. No uploads, no waiting. From text utilities to file converters, get instant results directly in your browser."
+        keywords="online tools, free tools, client-side tools, developer tools, text utilities, file converter, privacy-focused tools"
+        canonicalPath="/"
+        schema={schema}
+      />
       <div className="container mx-auto px-4">
         <Hero />
       </div>
