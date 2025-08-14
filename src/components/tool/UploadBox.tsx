@@ -133,7 +133,7 @@ export const UploadBox = ({
           <div className="flex justify-center gap-4">
             <Button onClick={clearAll} variant="destructive">Clear All</Button>
             {multiple && (
-              <Button variant="outline" onClick={() => document.querySelector('input[type="file"]')?.click()}>Add More Files</Button>
+              <Button variant="outline" onClick={() => (document.querySelector('input[type="file"]') as HTMLInputElement)?.click()}>Add More Files</Button>
             )}
           </div>
         </div>

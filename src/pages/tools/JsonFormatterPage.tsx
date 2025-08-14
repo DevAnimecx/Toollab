@@ -25,11 +25,11 @@ const JsonFormatterPage = () => {
       const pretty = JSON.stringify(parsed, null, 2);
       setFormatted(pretty);
       setIsValid(true);
-      showSuccess('JSON is valid and has been formatted!');
+      showSuccess('Your JSON is valid and has been formatted!', 'JSON Formatted');
     } catch (error) {
       setFormatted((error as Error).message);
       setIsValid(false);
-      showError('Invalid JSON!');
+      showError('The provided text is not valid JSON.', 'Invalid JSON');
     }
   };
 
