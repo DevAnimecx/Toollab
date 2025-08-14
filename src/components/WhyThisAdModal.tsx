@@ -2,32 +2,24 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from '@/components/ui/dialog';
-import { ShieldCheck } from 'lucide-react';
+import { Info } from 'lucide-react';
 
 export const WhyThisAdModal = () => {
   return (
-    <DialogContent className="bg-black/20 backdrop-blur-xl border-white/10 text-white">
+    <DialogContent className="bg-gradient-to-br from-saffron/20 via-white/10 to-india-green/20 backdrop-blur-xl border-white/10 text-white">
       <DialogHeader>
         <DialogTitle className="flex items-center gap-2 font-heading text-2xl">
-          <ShieldCheck className="h-6 w-6 text-primary" />
-          About BlackVault Ads
+          <Info className="h-6 w-6 text-primary" />
+          Why This Ad?
         </DialogTitle>
-        <DialogDescription className="text-muted-foreground pt-2">
-          We believe in a better way to advertise.
-        </DialogDescription>
       </DialogHeader>
-      <div className="space-y-4 text-sm text-foreground/80">
+      <div className="space-y-4 text-sm text-foreground/80 pt-2">
         <p>
-          BlackVault Ads is our custom, privacy-first advertising platform. Unlike traditional ad networks, we do{' '}
-          <strong>not track you, collect your personal data, or use cookies</strong> to follow you across the web.
+          This ad helps keep Toollab free for all users. We only display relevant, non-intrusive ads powered by the <strong>BlackVault Ads Network</strong>.
         </p>
         <p>
-          The ads you see are curated specifically for the Toollab audience—developers, designers, and tech enthusiasts. They are not personalized to you individually.
-        </p>
-        <p>
-          This system allows us to keep Toollab's 70+ tools completely free to use, without compromising your privacy. It's our commitment to building a more ethical and transparent web.
+          Our system is built on privacy. We do not track you, collect personal data, or use invasive cookies. This allows us to fund the platform while respecting your digital privacy.
         </p>
       </div>
     </DialogContent>

@@ -62,6 +62,8 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        saffron: '#FF9933',
+        'india-green': '#138808',
       },
       borderRadius: {
         lg: "var(--radius)",
