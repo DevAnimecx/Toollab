@@ -19,7 +19,7 @@ export const ThemeSelector = ({ open, onOpenChange }: ThemeSelectorProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-black/20 backdrop-blur-xl border-white/10 text-white">
+      <DialogContent>
         <DialogHeader>
           <DialogTitle>Display Settings</DialogTitle>
         </DialogHeader>

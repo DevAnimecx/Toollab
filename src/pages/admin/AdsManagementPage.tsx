@@ -35,11 +35,11 @@ const AdForm = ({ ad, onSave, onCancel }: { ad?: Ad | null, onSave: (ad: Ad) => 
 
   return (
     <div className="space-y-4 py-4">
-      <div><Label htmlFor="headline">Headline</Label><Input id="headline" value={headline} onChange={e => setHeadline(e.target.value)} className="bg-secondary/50" /></div>
-      <div><Label htmlFor="subtext">Subtext</Label><Input id="subtext" value={subtext} onChange={e => setSubtext(e.target.value)} className="bg-secondary/50" /></div>
-      <div><Label htmlFor="background">Background Class</Label><Input id="background" value={background} onChange={e => setBackground(e.target.value)} className="bg-secondary/50" placeholder="e.g., bg-gradient-to-br from-blue-500 to-purple-600" /></div>
-      <div><Label htmlFor="targetUrl">Target URL</Label><Input id="targetUrl" value={targetUrl} onChange={e => setTargetUrl(e.target.value)} className="bg-secondary/50" /></div>
-      <div><Label htmlFor="duration">Duration (seconds)</Label><Input id="duration" type="number" value={duration} onChange={e => setDuration(Number(e.target.value))} className="bg-secondary/50" /></div>
+      <div><Label htmlFor="headline">Headline</Label><Input id="headline" value={headline} onChange={e => setHeadline(e.target.value)} /></div>
+      <div><Label htmlFor="subtext">Subtext</Label><Input id="subtext" value={subtext} onChange={e => setSubtext(e.target.value)} /></div>
+      <div><Label htmlFor="background">Background Class</Label><Input id="background" value={background} onChange={e => setBackground(e.target.value)} placeholder="e.g., bg-gradient-to-br from-blue-500 to-purple-600" /></div>
+      <div><Label htmlFor="targetUrl">Target URL</Label><Input id="targetUrl" value={targetUrl} onChange={e => setTargetUrl(e.target.value)} /></div>
+      <div><Label htmlFor="duration">Duration (seconds)</Label><Input id="duration" type="number" value={duration} onChange={e => setDuration(Number(e.target.value))} /></div>
       <DialogFooter><Button variant="ghost" onClick={onCancel}>Cancel</Button><Button onClick={handleSubmit}>Save Ad</Button></DialogFooter>
     </div>
   );
@@ -109,14 +109,14 @@ const AdsManagementPage = () => {
           <h1 className="text-4xl font-bold font-heading">Ads Management</h1>
           <Dialog open={isFormOpen} onOpenChange={setIsFormOpen}>
             <DialogTrigger asChild><Button onClick={() => { setEditingAd(null); setIsFormOpen(true); }}><PlusCircle className="mr-2 h-4 w-4" /> Add New Ad</Button></DialogTrigger>
-            <DialogContent className="bg-black/20 backdrop-blur-xl border-white/10 text-white">
+            <DialogContent>
               <DialogHeader><DialogTitle>{editingAd ? 'Edit Ad' : 'Add New Ad'}</DialogTitle><DialogDescription>Fill in the details for the cinematic ad.</DialogDescription></DialogHeader>
               <AdForm ad={editingAd} onSave={handleSaveAd} onCancel={() => { setIsFormOpen(false); setEditingAd(null); }} />
             </DialogContent>
           </Dialog>
         </div>
 
-        <div className="rounded-2xl bg-black/20 backdrop-blur-xl border border-white/10 p-4">
+        <div className="rounded-2xl bg-card border p-4">
           <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <Table>
               <TableHeader>

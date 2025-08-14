@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/context/AuthContext';
 import { Eye, EyeOff } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AdminLoginModalProps {
   open: boolean;
@@ -35,28 +36,28 @@ export const AdminLoginModal = ({ open, onOpenChange }: AdminLoginModalProps) =>
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`bg-black/20 backdrop-blur-xl border-white/10 text-white ${isShaking ? 'animate-shake' : ''}`}>
+      <DialogContent className={cn(isShaking ? 'animate-shake' : '')}>
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl">Admin Access</DialogTitle>
-          <DialogDescription className="text-muted-foreground">
+          <DialogDescription>
             Enter your credentials to access the admin panel.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <Label htmlFor="username">Username</Label>
-            <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} className="bg-secondary/50" />
+            <Input id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
           </div>
           <div className="relative">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} className="bg-secondary/50" />
+            <Input id="password" type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} />
             <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-8 text-muted-foreground">
               {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
           </div>
           <div>
             <Label htmlFor="passcode">Passcode</Label>
-            <Input id="passcode" type="password" value={passcode} onChange={(e) => setPasscode(e.target.value)} className="bg-secondary/50" />
+            <Input id="passcode" type="password" value={passcode} onChange={(e) => setPasscode(e.target.value)} />
           </div>
           <Button type="submit" className="w-full">Authenticate</Button>
         </form>

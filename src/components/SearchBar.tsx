@@ -36,7 +36,7 @@ export function SearchBar() {
     <>
       <Button
         variant="outline"
-        className="relative h-12 w-full justify-start rounded-full text-md text-muted-foreground bg-secondary/50 border-white/10"
+        className="relative h-12 w-full justify-start rounded-full text-md text-muted-foreground bg-secondary border"
         onClick={() => setOpen(true)}
       >
         <Search className="h-5 w-5 mr-4 ml-2" />

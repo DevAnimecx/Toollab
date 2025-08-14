@@ -34,6 +34,10 @@
 
     --radius: 0.75rem;
 
+    /* Header variables */
+    --header-bg: rgba(11, 30, 53, 0.5);
+    --header-border: rgba(255, 255, 255, 0.1);
+
     /* Default fonts are Poppins */
     --font-sans: "Poppins", sans-serif;
     --font-heading: "Poppins", sans-serif;
@@ -60,6 +64,10 @@
     --border: 214.3 31.8% 91.4%; /* #E0E0E0 */
     --input: 214.3 31.8% 91.4%;
     --ring: 221 83% 53%;
+
+    /* Header variables */
+    --header-bg: rgba(250, 250, 250, 0.5);
+    --header-border: rgba(0, 0, 0, 0.08);
   }
 
   /* Font theme classes */

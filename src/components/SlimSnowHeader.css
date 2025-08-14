@@ -1,12 +1,21 @@
 .slim-snow-header {
   height: 40px;
   width: 100%;
-  background: rgba(11, 30, 53, 0.5);
+  background: var(--header-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.light .slim-snow-header {
+  /* Hide snow in light mode for better visibility */
+  background-image: none;
+}
+
+.light .snow-layer {
+  display: none;
 }
 
 @keyframes snow {

@@ -11,11 +11,11 @@ const Stats = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <div className="rounded-2xl bg-secondary/50 border border-white/10">
-          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10">
+        <div className="rounded-2xl bg-card border">
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
             {stats.map((stat, index) => (
               <div key={index} className="p-8 flex flex-col items-center text-center">
-                <div className="p-4 bg-secondary rounded-full mb-4 border border-white/10">
+                <div className="p-4 bg-background rounded-full mb-4 border">
                   {stat.icon}
                 </div>
                 <p className="text-4xl font-bold font-heading">{stat.value}</p>
