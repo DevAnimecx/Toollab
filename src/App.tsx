@@ -30,6 +30,7 @@ import SlimSnowHeader from "./components/SlimSnowHeader";
 import Sitemap from "./pages/Sitemap";
 import BlogIndexPage from "./pages/BlogIndexPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import ChangelogPage from "./pages/ChangelogPage";
 
 const queryClient = new QueryClient();
 
@@ -86,6 +87,7 @@ const App = () => {
                           <Route path="/terms-of-service" element={<TermsOfServicePage />} />
                           <Route path="/disclaimer" element={<DisclaimerPage />} />
                           <Route path="/status" element={<StatusPage />} />
+                          <Route path="/changelog" element={<ChangelogPage />} />
                           <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
                           <Route path="/admin/ads" element={<AdsManagementPage />} />
                           <Route path="/blog" element={<BlogIndexPage />} />

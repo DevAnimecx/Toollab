@@ -1,4 +1,5 @@
 import { Tool } from '@/data/tools';
+import { ChangelogEntry } from '@/data/changelog';
 
 const BASE_URL = 'https://toollab.dev';
 
@@ -50,5 +51,20 @@ export const getToolSchema = (tool: Tool) => ({
     '@type': 'AggregateRating',
     'ratingValue': '4.8',
     'reviewCount': '250',
+  },
+});
+
+export const getChangelogReleaseSchema = (entry: ChangelogEntry) => ({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  'name': 'Toollab',
+  'operatingSystem': 'Any (Web-based)',
+  'applicationCategory': 'Utilities',
+  'releaseNotes': `${BASE_URL}/changelog#${entry.id}`,
+  'softwareVersion': entry.version.replace('Toollab v', ''),
+  'offers': {
+    '@type': 'Offer',
+    'price': '0',
+    'priceCurrency': 'USD',
   },
 });
