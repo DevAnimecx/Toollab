@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { UploadCloud } from 'lucide-react';
 import CopyButton from '@/components/tool/CopyButton';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const ImageColorPickerPage = () => {
   const tool = tools.find((t) => t.path === '/tools/image-color-picker')!;
@@ -10,8 +10,8 @@ const ImageColorPickerPage = () => {
   const [pickedColor, setPickedColor] = useState('#ffffff');
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = (files: File[]) => {
+    const file = files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -49,11 +49,12 @@ const ImageColorPickerPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
         {!imageSrc ? (
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">Upload an Image</h3>
-            <input type="file" accept="image/*" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={handleFileChange}
+            acceptedFormats={{ 'image/*': [] }}
+            multiple={false}
+            prompt={{ title: 'Upload an Image' }}
+          />
         ) : (
           <div className="flex flex-col items-center gap-6">
             <canvas ref={canvasRef} onMouseMove={handleMouseMove} className="max-w-full h-auto rounded-lg cursor-crosshair border" />

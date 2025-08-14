@@ -1,25 +1,25 @@
 import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
-import { Button } from '@/components/ui/button';
-import { UploadCloud } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import * as EXIF from 'exif-js';
 import { showError } from '@/utils/toast';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const ImageMetadataViewerPage = () => {
   const tool = tools.find((t) => t.path === '/tools/image-metadata-viewer')!;
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [metadata, setMetadata] = useState<any>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = (files: File[]) => {
+    const file = files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
-        setImageSrc(event.target?.result as string);
+        const src = event.target?.result as string;
+        setImageSrc(src);
         const img = new Image();
-        img.src = event.target?.result as string;
+        img.src = src;
         img.onload = () => {
           EXIF.getData(img as any, function(this: any) {
             const allMetaData = EXIF.getAllTags(this);
@@ -39,11 +39,12 @@ const ImageMetadataViewerPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
-          <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-lg font-medium text-foreground">Upload an Image</h3>
-          <input type="file" accept="image/jpeg" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-        </div>
+        <UploadBox
+          onFilesAccepted={handleFileChange}
+          acceptedFormats={{ 'image/jpeg': ['.jpeg', '.jpg'] }}
+          multiple={false}
+          prompt={{ title: 'Upload an Image to View Metadata' }}
+        />
         {metadata && imageSrc && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="md:col-span-1">

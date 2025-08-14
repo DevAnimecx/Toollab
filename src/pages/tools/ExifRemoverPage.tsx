@@ -2,8 +2,9 @@ import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
-import { UploadCloud, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { showSuccess, showError } from '@/utils/toast';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const ExifRemoverPage = () => {
   const tool = tools.find((t) => t.path === '/tools/exif-remover')!;
@@ -11,8 +12,8 @@ const ExifRemoverPage = () => {
   const [cleanImage, setCleanImage] = useState<string | null>(null);
   const [originalFileName, setOriginalFileName] = useState('');
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = (files: File[]) => {
+    const file = files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -35,7 +36,7 @@ const ExifRemoverPage = () => {
       const ctx = canvas.getContext('2d');
       if (ctx) {
         ctx.drawImage(img, 0, 0);
-        setCleanImage(canvas.toDataURL('image/jpeg')); // Change format if needed
+        setCleanImage(canvas.toDataURL('image/jpeg'));
         showSuccess('Metadata removed successfully!');
       } else {
         showError('Could not process the image.');
@@ -47,12 +48,15 @@ const ExifRemoverPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
         {!originalImage ? (
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">Upload an Image</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Metadata will be stripped automatically.</p>
-            <input type="file" accept="image/jpeg,image/png" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={handleFileChange}
+            acceptedFormats={{ 'image/jpeg': ['.jpeg', '.jpg'], 'image/png': ['.png'] }}
+            multiple={false}
+            prompt={{
+              title: 'Upload an Image',
+              description: 'Metadata will be stripped automatically.'
+            }}
+          />
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
             <div>

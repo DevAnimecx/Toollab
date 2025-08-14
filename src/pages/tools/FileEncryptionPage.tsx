@@ -3,18 +3,15 @@ import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { UploadCloud, Lock, Unlock } from 'lucide-react';
+import { Lock, Unlock } from 'lucide-react';
 import { showLoading, showError, showSuccess, dismissToast } from '@/utils/toast';
 import CryptoJS from 'crypto-js';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const FileEncryptionPage = () => {
   const tool = tools.find((t) => t.path === '/tools/file-encryption')!;
   const [file, setFile] = useState<File | null>(null);
   const [password, setPassword] = useState('');
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files?.[0] || null);
-  };
 
   const processFile = async (mode: 'encrypt' | 'decrypt') => {
     if (!file || !password) {
@@ -62,13 +59,10 @@ const FileEncryptionPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="max-w-lg mx-auto space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
-          <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-lg font-medium text-foreground">
-            {file ? file.name : 'Upload a File'}
-          </h3>
-          <input type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-        </div>
+        <UploadBox
+          onFilesAccepted={(files) => setFile(files[0] || null)}
+          multiple={false}
+        />
         <Input
           type="password"
           placeholder="Enter a strong password"

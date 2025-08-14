@@ -4,16 +4,17 @@ import { tools } from '@/data/tools';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import CopyButton from '@/components/tool/CopyButton';
-import { UploadCloud, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { showError } from '@/utils/toast';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const ImageToBase64Page = () => {
   const tool = tools.find((t) => t.path === '/tools/image-to-base64')!;
   const [base64, setBase64] = useState('');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = (files: File[]) => {
+    const file = files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
@@ -36,12 +37,12 @@ const ImageToBase64Page = () => {
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
         {!imagePreview ? (
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">Upload an image</h3>
-            <p className="mt-1 text-sm text-muted-foreground">Drag and drop or click to select a file.</p>
-            <input type="file" accept="image/*" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={handleFileChange}
+            acceptedFormats={{ 'image/*': [] }}
+            multiple={false}
+            prompt={{ title: 'Upload an image' }}
+          />
         ) : (
           <div className="flex flex-col md:flex-row gap-6">
             <div className="w-full md:w-1/3">

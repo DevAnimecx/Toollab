@@ -1,18 +1,19 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
-import { UploadCloud, Trash2, Download } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { showLoading, showError, dismissToast } from '@/utils/toast';
 import * as pdfjsLib from 'pdfjs-dist';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const PdfToImagesPage = () => {
   const tool = tools.find((t) => t.path === '/tools/pdf-to-images')!;
   const [images, setImages] = useState<string[]>([]);
   const [fileName, setFileName] = useState('');
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = async (files: File[]) => {
+    const file = files[0];
     if (!file) return;
 
     setImages([]);
@@ -63,14 +64,12 @@ const PdfToImagesPage = () => {
   return (
     <ToolPageLayout tool={tool}>
       <div className="space-y-6">
-        <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
-          <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-          <h3 className="mt-4 text-lg font-medium text-foreground">
-            {fileName ? `PDF: ${fileName}.pdf` : 'Upload a PDF to convert'}
-          </h3>
-          <p className="mt-1 text-sm text-muted-foreground">Each page will be converted to an image.</p>
-          <input type="file" accept=".pdf" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-        </div>
+        <UploadBox
+          onFilesAccepted={handleFileChange}
+          acceptedFormats={{ 'application/pdf': ['.pdf'] }}
+          multiple={false}
+          prompt={{ title: 'Upload a PDF to Convert to Images' }}
+        />
 
         {images.length > 0 && (
           <>
@@ -87,11 +86,6 @@ const PdfToImagesPage = () => {
                   </Button>
                 </div>
               ))}
-            </div>
-            <div className="flex justify-center">
-              <Button onClick={() => setImages([])} variant="destructive">
-                <Trash2 className="mr-2 h-4 w-4" /> Clear All
-              </Button>
             </div>
           </>
         )}

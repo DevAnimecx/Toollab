@@ -3,12 +3,12 @@ import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { UploadCloud } from 'lucide-react';
 import { ToolSettings, SettingsRow } from '@/components/tool/ToolSettings';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
 import { showLoading, showError, showSuccess, dismissToast } from '@/utils/toast';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const PdfWatermarkAdderPage = () => {
   const tool = tools.find((t) => t.path === '/tools/pdf-watermark-adder')!;
@@ -92,13 +92,11 @@ const PdfWatermarkAdderPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">
-              {pdfFile ? pdfFile.name : 'Upload a PDF'}
-            </h3>
-            <input type="file" accept=".pdf" onChange={(e) => setPdfFile(e.target.files?.[0] || null)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={(files) => setPdfFile(files[0] || null)}
+            acceptedFormats={{ 'application/pdf': ['.pdf'] }}
+            multiple={false}
+          />
           <Button onClick={handleAddWatermark} disabled={!pdfFile || isProcessing} size="lg" className="w-full">
             {isProcessing ? 'Processing...' : 'Add Watermark & Download'}
           </Button>

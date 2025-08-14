@@ -2,21 +2,18 @@ import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
-import { UploadCloud, AlertTriangle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
 import { ToolSettings, SettingsRow } from '@/components/tool/ToolSettings';
 import { Slider } from '@/components/ui/slider';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { showLoading, showError, showSuccess, dismissToast } from '@/utils/toast';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const FileShredderPage = () => {
   const tool = tools.find((t) => t.path === '/tools/file-shredder')!;
   const [file, setFile] = useState<File | null>(null);
   const [passes, setPasses] = useState(3);
   const [isProcessing, setIsProcessing] = useState(false);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFile(e.target.files?.[0] || null);
-  };
 
   const handleShred = async () => {
     if (!file) {
@@ -34,7 +31,6 @@ const FileShredderPage = () => {
         crypto.getRandomValues(view);
       }
       
-      // The buffer is now overwritten in memory. When `file` is reset, it will be garbage collected.
       setFile(null);
       dismissToast(toastId);
       showSuccess('File data has been securely overwritten in memory and discarded.');
@@ -50,13 +46,11 @@ const FileShredderPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">
-              {file ? file.name : 'Upload a File to Shred'}
-            </h3>
-            <input type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={(files) => setFile(files[0] || null)}
+            multiple={false}
+            prompt={{ title: 'Upload a File to Shred' }}
+          />
           <Button onClick={handleShred} disabled={!file || isProcessing} size="lg" variant="destructive" className="w-full">
             {isProcessing ? 'Shredding...' : `Shred File (${passes} passes)`}
           </Button>

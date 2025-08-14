@@ -1,13 +1,13 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { UploadCloud, FileDown, Trash2 } from 'lucide-react';
 import { ToolSettings, SettingsRow } from '@/components/tool/ToolSettings';
 import { showLoading, showError, showSuccess, dismissToast } from '@/utils/toast';
 import * as pdfjsLib from 'pdfjs-dist';
 import { PDFDocument } from 'pdf-lib';
+import { UploadBox } from '@/components/tool/UploadBox';
 
 const PdfSplitterPage = () => {
   const tool = tools.find((t) => t.path === '/tools/pdf-splitter')!;
@@ -16,8 +16,8 @@ const PdfSplitterPage = () => {
   const [pageRange, setPageRange] = useState('1-1');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  const handleFileChange = async (files: File[]) => {
+    const file = files[0];
     if (file) {
       setPdfFile(file);
       try {
@@ -30,6 +30,9 @@ const PdfSplitterPage = () => {
         setNumPages(0);
         setPdfFile(null);
       }
+    } else {
+      setPdfFile(null);
+      setNumPages(0);
     }
   };
 
@@ -83,24 +86,15 @@ const PdfSplitterPage = () => {
     <ToolPageLayout tool={tool}>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-6">
-          <div className="relative border-2 border-dashed border-muted rounded-lg p-12 text-center bg-secondary/20 hover:bg-secondary/40 transition-colors">
-            <UploadCloud className="mx-auto h-12 w-12 text-muted-foreground" />
-            <h3 className="mt-4 text-lg font-medium text-foreground">
-              {pdfFile ? pdfFile.name : 'Upload a PDF'}
-            </h3>
-            {numPages > 0 && (
-              <p className="text-sm text-muted-foreground mt-1">Total pages: {numPages}</p>
-            )}
-            <input type="file" accept=".pdf" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-          </div>
+          <UploadBox
+            onFilesAccepted={handleFileChange}
+            acceptedFormats={{ 'application/pdf': ['.pdf'] }}
+            multiple={false}
+            prompt={{ description: numPages > 0 ? `Total pages: ${numPages}` : 'Upload a PDF to split' }}
+          />
           <Button onClick={handleSplit} disabled={!pdfFile || isProcessing || numPages === 0} size="lg" className="w-full">
             {isProcessing ? 'Processing...' : 'Split & Download PDF'}
           </Button>
-          {pdfFile && (
-            <Button onClick={() => { setPdfFile(null); setNumPages(0); setPageRange('1-1'); }} variant="destructive" className="w-full">
-              <Trash2 className="mr-2 h-4 w-4" /> Remove PDF
-            </Button>
-          )}
         </div>
         <div className="lg:col-span-1">
           <ToolSettings title="Split Settings">
