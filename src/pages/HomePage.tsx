@@ -1,7 +1,6 @@
 import ToolCard from "@/components/ToolCard";
 import { tools, categories } from "@/data/tools";
 import Stats from "@/components/Stats";
-import { SearchBar } from "@/components/SearchBar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { Link } from "react-router-dom";
@@ -9,25 +8,10 @@ import { useFavorites } from "@/context/FavoritesContext";
 import BlackVaultAdBlock from "@/components/BlackVaultAdBlock";
 import Seo from "@/components/Seo";
 import { getWebsiteSchema, getOrganizationSchema } from "@/lib/schema";
-
-const Hero = () => (
-  <section className="text-center py-16 md:py-32">
-    <h1 className="text-4xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80">
-      Toollab – 70+ Free Online Tools
-    </h1>
-    <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
-      Toollab offers fast, secure, and free client-side tools. No uploads, no waiting. Just instant results.
-    </p>
-    <div className="mt-8 hidden md:flex justify-center">
-      <div className="w-full max-w-lg">
-        <SearchBar />
-      </div>
-    </div>
-  </section>
-);
+import Hero from "@/components/Hero";
 
 const CategoryCarousel = () => (
-  <section className="py-16">
+  <section id="categories" className="py-16">
     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Explore by Category</h2>
     <ScrollArea className="w-full whitespace-nowrap rounded-md">
       <div className="flex w-max space-x-4 p-4">
