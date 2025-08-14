@@ -21,9 +21,9 @@ const Hero = () => {
 
   return (
     <section className="text-center py-20 md:py-32">
-      <h1 className="text-5xl md:text-7xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80 leading-tight">
+      <h1 className="text-5xl md:text-8xl font-extrabold font-heading bg-clip-text text-transparent bg-gradient-to-b from-foreground to-muted-foreground/80 leading-tight">
         The fastest way to{' '}
-        <span className="relative inline-block h-[1.2em] w-[240px] md:w-[320px] align-bottom">
+        <span className="relative inline-block h-[1.2em] w-[240px] md:w-[380px] align-bottom">
           <AnimatePresence mode="wait">
             <motion.span
               key={words[index]}
@@ -38,10 +38,10 @@ const Hero = () => {
           </AnimatePresence>
         </span>
       </h1>
-      <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto font-body">
+      <p className="mt-8 text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto font-body">
         70+ premium tools in one place — free, fast, and easy to use.
       </p>
-      <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
         <Button asChild size="lg" className="w-full sm:w-auto">
           <a href="#tool-showcase">
             Get Started <ArrowRight className="ml-2 h-4 w-4" />
@@ -51,7 +51,7 @@ const Hero = () => {
           <a href="#categories">Explore Categories</a>
         </Button>
       </div>
-      <div className="mt-12 mx-auto w-full max-w-lg">
+      <div className="mt-16 mx-auto w-full max-w-lg">
         <SearchBar />
       </div>
     </section>
