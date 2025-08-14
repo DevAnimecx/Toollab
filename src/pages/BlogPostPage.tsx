@@ -5,7 +5,7 @@ import StaticPageLayout from '@/components/StaticPageLayout';
 import Seo from '@/components/Seo';
 import { getBreadcrumbSchema } from '@/lib/schema';
 import { marked } from 'marked';
-import ToolCard from '@/components/ToolCard';
+import ToolCard from '@/components/tools/ToolCard';
 import { SocialShareButtons } from '@/components/blog/SocialShareButtons';
 import {
   Accordion,

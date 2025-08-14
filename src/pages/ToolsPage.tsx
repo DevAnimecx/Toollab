@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { tools, categories } from '@/data/tools';
 import { ToolViewToggle } from '@/components/tools/ToolViewToggle';
 import { CategorySidebar } from '@/components/tools/CategorySidebar';
-import { ToolCard } from '@/components/tools/ToolCard';
+import ToolCard from '@/components/tools/ToolCard';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import { useFavorites } from '@/context/FavoritesContext';

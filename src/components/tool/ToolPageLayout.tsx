@@ -1,10 +1,12 @@
 import React from 'react';
 import { Tool, tools } from '@/data/tools';
-import ToolCard from '@/components/ToolCard';
+import ToolCard from '@/components/tools/ToolCard';
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import Seo from '@/components/Seo';
 import { getToolSchema, getBreadcrumbSchema } from '@/lib/schema';
+import { motion } from 'framer-motion';
+import { ChevronRight } from 'lucide-react';
 
 interface ToolPageLayoutProps {
   tool: Tool;
@@ -27,6 +29,16 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
     { name: tool.name, path: tool.path },
   ]);
 
+  const Breadcrumbs = () => (
+    <nav className="flex items-center text-sm text-muted-foreground mb-8">
+      <Link to="/" className="hover:text-white">Home</Link>
+      <ChevronRight className="h-4 w-4 mx-1" />
+      <Link to="/tools" className="hover:text-white">Tools</Link>
+      <ChevronRight className="h-4 w-4 mx-1" />
+      <span className="text-white font-semibold">{tool.name}</span>
+    </nav>
+  );
+
   return (
     <>
       <Seo
@@ -37,7 +49,14 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
         ogType="article"
         schema={{ ...toolSchema, ...breadcrumbSchema }}
       />
-      <div className="container mx-auto px-4 py-12" style={style}>
+      <motion.div 
+        className="container mx-auto px-4 py-12" 
+        style={style}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <Breadcrumbs />
         <header className="relative text-center mb-12 p-8 rounded-2xl overflow-hidden border border-white/10 bg-secondary/40">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)] to-transparent opacity-10"></div>
           <tool.icon className="absolute -top-4 -right-4 h-32 w-32 text-[var(--accent-color)] opacity-5" />
@@ -74,7 +93,7 @@ const ToolPageLayout = ({ tool, children }: ToolPageLayoutProps) => {
             </div>
           </footer>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

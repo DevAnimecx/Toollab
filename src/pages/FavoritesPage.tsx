@@ -1,4 +1,4 @@
-import ToolCard from "@/components/ToolCard";
+import ToolCard from "@/components/tools/ToolCard";
 import { tools } from "@/data/tools";
 import { useFavorites } from "@/context/FavoritesContext";
 import Seo from "@/components/Seo";

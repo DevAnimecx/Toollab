@@ -1,4 +1,4 @@
-import ToolCard from "@/components/ToolCard";
+import ToolCard from "@/components/tools/ToolCard";
 import { tools, categories } from "@/data/tools";
 import Stats from "@/components/Stats";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
