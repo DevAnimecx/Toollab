@@ -65,30 +65,32 @@ const ToolCard = ({ tool, animationDelay }: ToolCardProps) => {
 
   return (
     <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5} glareEnable={true} glareMaxOpacity={0.1} scale={1.02}>
-      <Link to={path} className="group block h-full opacity-0 animate-staggered-fade-slide-up" style={style}>
-        <div
-          className="relative p-6 rounded-2xl h-full overflow-hidden transition-all duration-300 ease-out
+      <div className="h-full opacity-0 animate-staggered-fade-slide-up" style={style}>
+        <Link to={path} className="group block h-full">
+          <div
+            className="relative p-6 rounded-2xl h-full overflow-hidden transition-all duration-300 ease-out
                         bg-black/20 backdrop-blur-xl border border-white/10
                         hover:border-[var(--accent-color)] hover:shadow-2xl hover:shadow-[var(--accent-color)]/10"
-        >
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 group-hover:from-white/10 transition-opacity duration-300" />
-          <PopularityBadge popularity={popularity} />
-          <button onClick={handleFavoriteClick} className="absolute top-4 left-4 z-20 p-1 text-muted-foreground hover:text-yellow-400 transition-colors">
-            <Star className={cn("h-5 w-5", isFav ? "text-yellow-400 fill-yellow-400" : "")} />
-          </button>
+          >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 group-hover:from-white/10 transition-opacity duration-300" />
+            <PopularityBadge popularity={popularity} />
+            <button onClick={handleFavoriteClick} className="absolute top-4 left-4 z-20 p-1 text-muted-foreground hover:text-yellow-400 transition-colors">
+              <Star className={cn("h-5 w-5", isFav ? "text-yellow-400 fill-yellow-400" : "")} />
+            </button>
 
-          <div className="relative z-10 flex flex-col h-full text-center items-center pt-4">
-            <div className="mb-4 text-[var(--accent-color)] transition-transform duration-300 group-hover:scale-110">
-              <Icon className="h-10 w-10" />
+            <div className="relative z-10 flex flex-col h-full text-center items-center pt-4">
+              <div className="mb-4 text-[var(--accent-color)] transition-transform duration-300 group-hover:scale-110">
+                <Icon className="h-10 w-10" />
+              </div>
+              <h3 className="font-heading text-xl font-semibold text-white mb-2">{name}</h3>
+              <p className="text-muted-foreground text-sm font-body flex-grow mb-4">{description}</p>
+              <Badge variant="secondary" style={{ color: accentColor, borderColor: `${accentColor}40`, background: `${accentColor}15` }}>
+                {category}
+              </Badge>
             </div>
-            <h3 className="font-heading text-xl font-semibold text-white mb-2">{name}</h3>
-            <p className="text-muted-foreground text-sm font-body flex-grow mb-4">{description}</p>
-            <Badge variant="secondary" style={{ color: accentColor, borderColor: `${accentColor}40`, background: `${accentColor}15` }}>
-              {category}
-            </Badge>
           </div>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </Tilt>
   );
 };
