@@ -33,6 +33,7 @@ import Sitemap from "./pages/Sitemap";
 import BlogIndexPage from "./pages/BlogIndexPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import ChangelogPage from "./pages/ChangelogPage";
+import UpcomingToolsPage from "./pages/UpcomingToolsPage";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,7 @@ const AppContent = () => {
             <Route element={<AppLayout />}>
               <Route path="/" element={<HomePage />} />
               <Route path="/tools" element={<ToolsPage />} />
+              <Route path="/upcoming-tools" element={<UpcomingToolsPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

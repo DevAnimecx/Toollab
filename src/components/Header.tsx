@@ -28,6 +28,7 @@ const SettingsToggle = () => {
 const Header = () => {
   const navLinks = [
     { name: "All Tools", href: "/tools" },
+    { name: "Upcoming Tools", href: "/upcoming-tools" },
     { name: "Blog", href: "/blog" },
     { name: "Changelog", href: "/changelog" },
     { name: "Status", href: "/status" },
