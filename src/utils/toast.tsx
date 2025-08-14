@@ -1,5 +1,6 @@
 import { toast } from "sonner";
 import { CinematicNotification } from "@/components/ui/sonner";
+import React from 'react';
 
 type NotificationOptions = {
   title: string;
