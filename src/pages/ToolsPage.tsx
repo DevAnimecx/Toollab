@@ -1,85 +1,133 @@
-import ToolCard from "@/components/ToolCard";
-import { tools, categories } from "@/data/tools";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import { Search } from "lucide-react";
-import Seo from "@/components/Seo";
-import { getBreadcrumbSchema } from "@/lib/schema";
+import { useState, useEffect, useMemo } from 'react';
+import { tools, categories } from '@/data/tools';
+import { ToolViewToggle } from '@/components/tools/ToolViewToggle';
+import { CategorySidebar } from '@/components/tools/CategorySidebar';
+import { ToolCard } from '@/components/tools/ToolCard';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
+import { useFavorites } from '@/context/FavoritesContext';
+import { Button } from '@/components/ui/button';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { Skeleton } from '@/components/ui/skeleton';
 
-const ToolsPage = () => {
+export const ToolsPage = () => {
+  const [view, setView] = useState<'grid'|'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { favorites } = useFavorites();
+  const isMobile = useMediaQuery('(max-width: 768px)');
 
-  const filteredTools = tools.filter(tool => {
-    const matchesSearch = tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          tool.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesCategory = selectedCategory === 'All' || tool.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
-  const breadcrumbSchema = getBreadcrumbSchema([
-    { name: 'Home', path: '/' },
-    { name: 'All Tools', path: '/tools' },
-  ]);
+  const filteredTools = useMemo(() => {
+    return tools.filter(tool => {
+      // Search filter
+      const matchesSearch = 
+        tool.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        tool.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      // Category filter
+      const matchesCategory = 
+        selectedCategories.length === 0 || 
+        selectedCategories.includes(tool.category);
+      
+      return matchesSearch && matchesCategory;
+    });
+  }, [searchTerm, selectedCategories]);
+
+  const favoriteTools = useMemo(() => {
+    return filteredTools.filter(tool => favorites.includes(tool.path));
+  }, [filteredTools, favorites]);
+
+  const clearFilters = () => {
+    setSearchTerm('');
+    setSelectedCategories([]);
+  };
 
   return (
-    <>
-      <Seo
-        title="All Tools - Explore 70+ Utilities"
-        description="Browse the complete collection of over 70 free online tools from Toollab. Find utilities for text, files, coding, security, and everyday tasks, all running securely in your browser."
-        keywords="all tools, tool directory, text tools, file tools, coding tools, security tools, everyday utilities"
-        canonicalPath="/tools"
-        schema={breadcrumbSchema}
-      />
-      <div className="container mx-auto px-4 py-12">
-        <section className="text-center py-12">
-          <h1 className="text-4xl md:text-5xl font-bold font-heading">
-            All Tools
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            Explore our full suite of client-side tools. Fast, free, and secure.
-          </p>
-        </section>
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row gap-8">
+        {/* Category Sidebar */}
+        <CategorySidebar
+          selectedCategories={selectedCategories}
+          setSelectedCategories={setSelectedCategories}
+        />
 
-        <div className="hidden md:block sticky top-16 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-40 py-4 mb-8">
-          <div className="relative max-w-xl mx-auto mb-6">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input 
-              type="search" 
-              placeholder="Search for a tool by name or tag..." 
-              className="pl-10 h-12 text-lg"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+        <div className="flex-1">
+          {/* Toolbar */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+            <div className="w-full md:w-auto">
+              <h1 className="text-3xl font-bold">
+                {selectedCategories.length === 1 
+                  ? `${filteredTools.length} Tools in '${selectedCategories[0]}'`
+                  : `${filteredTools.length} Tools`}
+              </h1>
+              {selectedCategories.length > 0 && (
+                <p className="text-sm text-muted-foreground">
+                  {categories[selectedCategories[0]]?.description}
+                </p>
+              )}
+            </div>
+
+            <div className="flex items-center gap-4 w-full md:w-auto">
+              <div className="relative flex-1 md:w-64">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search tools..."
+                  className="pl-9"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+              </div>
+              <ToolViewToggle onChange={setView} />
+            </div>
           </div>
-          <div className="flex justify-center flex-wrap gap-2">
-            <button onClick={() => setSelectedCategory('All')} className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === 'All' ? 'bg-primary text-primary-foreground' : 'bg-secondary text-secondary-foreground'}`}>All</button>
-            {Object.entries(categories).map(([name, {color}]) => (
-              <button key={name} onClick={() => setSelectedCategory(name)} className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === name ? color.replace('bg-opacity-10', '') : 'bg-secondary text-secondary-foreground'}`}>
-                {name}
-              </button>
-            ))}
+
+          {selectedCategories.length > 0 && (
+            <div className="mb-4">
+              <Button variant="ghost" size="sm" onClick={clearFilters}>
+                Clear filters
+              </Button>
+            </div>
+          )}
+
+          {/* Favorites Section */}
+          {favoriteTools.length > 0 && (
+            <div className="mb-8">
+              <h2 className="text-xl font-semibold mb-4">Your Favorites</h2>
+              <div className={cn(
+                'gap-4',
+                view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-2'
+              )}>
+                {favoriteTools.map(tool => (
+                  <ToolCard key={tool.path} tool={tool} view={view} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Main Tools List */}
+          <div className={cn(
+            'gap-4',
+            view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'space-y-2'
+          )}>
+            {isLoading ? (
+              Array.from({ length: 8 }).map((_, i) => (
+                <Skeleton key={i} className="h-48 w-full rounded-xl" />
+              ))
+            ) : (
+              filteredTools.map(tool => (
+                <ToolCard key={tool.path} tool={tool} view={view} />
+              ))
+            )}
           </div>
         </div>
-
-        <section>
-          {filteredTools.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-              {filteredTools.map((tool) => (
-                <ToolCard 
-                  key={tool.path} 
-                  tool={tool}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="text-center text-muted-foreground">No tools found. Try a different search.</p>
-          )}
-        </section>
       </div>
-    </>
+    </div>
   );
 };
-
-export default ToolsPage;
