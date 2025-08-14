@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useCountryDetection } from '@/hooks/useCountryDetection';
 
 type SeasonalTheme = 'default' | 'independence';
 
@@ -19,19 +20,30 @@ const isIndependenceDayPeriod = () => {
 };
 
 export const SeasonalThemeProvider = ({ children }: { children: ReactNode }) => {
-  const isIndependenceDay = isIndependenceDayPeriod();
   const [theme, setThemeState] = useState<SeasonalTheme>('default');
+  const { country, isLoading: isCountryLoading } = useCountryDetection();
+  const isIndependenceDay = isIndependenceDayPeriod();
 
   useEffect(() => {
     const storedTheme = localStorage.getItem('seasonal-theme') as SeasonalTheme;
     if (storedTheme) {
       setThemeState(storedTheme);
+      return;
+    }
+
+    if (isCountryLoading) {
+      return; // Wait for country detection to finish
+    }
+
+    if (country === 'India') {
+      setThemeState('independence');
     } else if (isIndependenceDay) {
+      // Fallback for non-Indian users or if detection fails
       setThemeState('independence');
     } else {
       setThemeState('default');
     }
-  }, [isIndependenceDay]);
+  }, [country, isCountryLoading, isIndependenceDay]);
 
   const setTheme = (newTheme: SeasonalTheme) => {
     setThemeState(newTheme);
