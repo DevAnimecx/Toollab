@@ -5,6 +5,7 @@ interface FavoritesContextType {
   addFavorite: (toolPath: string) => void;
   removeFavorite: (toolPath: string) => void;
   isFavorite: (toolPath: string) => boolean;
+  toggleFavorite: (toolPath: string) => void;
 }
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
@@ -25,7 +26,7 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addFavorite = (toolPath: string) => {
-    const updatedFavorites = [...favorites, toolPath];
+    const updatedFavorites = [...new Set([...favorites, toolPath])];
     updateLocalStorage(updatedFavorites);
   };
 
@@ -38,8 +39,16 @@ export const FavoritesProvider = ({ children }: { children: ReactNode }) => {
     return favorites.includes(toolPath);
   };
 
+  const toggleFavorite = (toolPath: string) => {
+    if (isFavorite(toolPath)) {
+      removeFavorite(toolPath);
+    } else {
+      addFavorite(toolPath);
+    }
+  };
+
   return (
-    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favorites, addFavorite, removeFavorite, isFavorite, toggleFavorite }}>
       {children}
     </FavoritesContext.Provider>
   );

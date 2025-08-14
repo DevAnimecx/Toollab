@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { categories } from '@/data/tools';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ChevronLeft } from 'lucide-react';
@@ -48,7 +48,7 @@ export const CategorySidebar = ({
                 onCheckedChange={() => toggleCategory(category)}
               />
               <label htmlFor={`cat-${category}`} className="flex items-center gap-2 text-sm cursor-pointer">
-                <categories[category].icon className="h-4 w-4" />
+                {React.createElement(categories[category as keyof typeof categories].icon, { className: "h-4 w-4" })}
                 {category}
               </label>
             </div>
