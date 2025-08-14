@@ -13,6 +13,7 @@ import { Flame, Star, Lightbulb, Search, Settings, ArrowDown } from 'lucide-reac
 import Seo from '@/components/Seo';
 import { AdminLoginModal } from '@/components/status/AdminLoginModal';
 import { Label } from '@/components/ui/label';
+import { BotCheck } from '@/components/BotCheck';
 
 const statusConfig: Record<ToolStatus, { className: string }> = {
   'Planned': { className: 'bg-gray-500/20 text-gray-300 border-gray-500/30' },
@@ -212,6 +213,7 @@ const UpcomingToolsPage = () => {
                 </Select>
               </div>
               <div><Label htmlFor="tool-description">Description</Label><Textarea id="tool-description" placeholder="Briefly describe what the tool should do." /></div>
+              <BotCheck />
               <Button type="submit" className="w-full">Submit Request</Button>
             </form>
           </div>
