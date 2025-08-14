@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import ToolPageLayout from '@/components/tool/ToolPageLayout';
 import { tools } from '@/data/tools';
 import { Button } from '@/components/ui/button';
@@ -36,6 +36,7 @@ const PdfToImagesPage = () => {
         canvas.width = viewport.width;
 
         await page.render({ 
+          canvas: canvas,
           canvasContext: context, 
           viewport: viewport
         }).promise;
