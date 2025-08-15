@@ -13,10 +13,22 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useState, useEffect } from 'react';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
   const post = posts.find(p => p.slug === slug);
+  const [htmlContent, setHtmlContent] = useState('');
+
+  useEffect(() => {
+    if (post) {
+      const parseMarkdown = async () => {
+        const content = await marked.parse(post.content);
+        setHtmlContent(content);
+      };
+      parseMarkdown();
+    }
+  }, [post]);
 
   if (!post) {
     return <Navigate to="/404" />;
@@ -74,7 +86,7 @@ const BlogPostPage = () => {
           </div>
           <SocialShareButtons url={fullUrl} title={post.title} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: marked.parse(post.content) }} />
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
       </StaticPageLayout>
       
       {post.faq && post.faq.length > 0 && (
