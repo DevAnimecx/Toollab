@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { posts } from '@/data/posts';
 import { tools } from '@/data/tools';
@@ -13,18 +14,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useState, useEffect } from 'react';
 
 const BlogPostPage = () => {
   const { slug } = useParams();
-  const post = posts.find(p => p.slug === slug);
   const [htmlContent, setHtmlContent] = useState('');
+  const post = posts.find(p => p.slug === slug);
 
   useEffect(() => {
     if (post) {
       const parseMarkdown = async () => {
-        const content = await marked.parse(post.content);
-        setHtmlContent(content);
+        const html = await marked.parse(post.content);
+        setHtmlContent(html);
       };
       parseMarkdown();
     }
